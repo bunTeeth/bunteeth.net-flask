@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Chloe's Blog | My Binder</title>
+    <link rel="icon" type="image/gif" href="{{ url_for('static', filename='images/favicon-32x32.ico') }}">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
+	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+  </head>
+  
+  <body>
+  
+  <header>
+    <!--navigation menu -->
+      <nav>
+        <!-- TODO -->
+            <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
+            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
+			<a href="https://theatre.bunteeth.net"><img id="theatre-button" src="{{ url_for('static', filename='images/theatre.png') }}" style="display:inline-block;"></a>
+			<a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display:inline-block;"></a>
+
+      </nav>
+  </header>
+  
+	<main>
+		<div class="body-container">
+			<div class="content-container">
+				<!--TODO-->
+				<div class="binder-pages" id="pageContainer">
+				</div>
+					<button id="binderButtonBack" class="binderButton" onclick="binderPageButtonBack()"><p><b>Last Page !</b></p></button>
+					<button id="binderButtonNext" class="binderButton" onclick="binderPageButtonNext()"><p><b>Next Page !</b></p></button>
+					<p id="pageCaption">Here's my opening page of Glaceon & Leafeon. This page is for non-illustration rares. All I'm  missing rn are GX's. ^-^</p>
+			</div>
+			<div class="rightsidebar">
+				<h2><b>Blog:</b></h2>
+				<div class="blog-current">
+					<ul>
+						<li><b>You are here:</b></li>
+						<li><a href="/blog?post=22">---My Pokemon Card Binder  !---</a></li>
+					</ul>
+				</div>
+				<div class="blog-more">
+					<ul>
+						<li><b>Here are some other silly posts:</b></li>
+						<li><a href="/blog?post=1">---Introspection---</a></li>
+						<li><a href="/about">---About Me !---</a></li>
+					</ul>
+				</div>
+				</ul>
+			</div>
+			<div class="leftsidebar">
+				<!--TODO-->
+			</div>
+		</div>
+	</main>
+  
+	<footer>
+		<img src="{{ url_for('static', filename='images/drpepper.gif') }}" style="display:inline-block;">
+		<img src="{{ url_for('static', filename='images/bunbrowser.gif') }}" style="display:inline-block;">
+  </footer>
+  
+  </body>
+</html>

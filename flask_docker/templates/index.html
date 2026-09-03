@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<title>bunTeeth.net | Home</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="icon" type="image/gif" href="{{ url_for('static', filename='images/favicon-32x32.ico') }}">
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</head>
+
+  <body>
+    <header>
+    <!--navigation menu -->
+      <nav>
+            <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
+            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
+			<a href="https://theatre.bunteeth.net"><img id="theatre-button" src="{{ url_for('static', filename='images/theatre.png') }}" style="display:inline-block;"></a>
+			<a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display:inline-block;"></a>
+      </nav>
+    </header>
+
+    <main>
+			<div class="body-container">
+			<!-- SITE LAYOUT-->
+			<div class="content-container">
+				<h1>WELCOME ! :D</h1>
+				<h2>This is a Work In Progress site!</h2>
+				<p>Look at these stamps while u wait !<p>
+				<img src="{{ url_for('static', filename='images/pikanyan.webp') }}" style="display:inline-block;">
+				<img src="{{ url_for('static', filename='images/awawa.webp') }}" style="display:inline-block;">
+				<img src="{{ url_for('static', filename='images/sugarbunnystamp.webp') }}" style="display:inline-block;">
+				<img src="{{ url_for('static', filename='images/eyes.png') }}" style="display:inline-block;">
+				<img src="{{ url_for('static', filename='images/mikuaaaah.png') }}" style="display:inline-block;">
+				<img src="{{ url_for('static', filename='images/aaaah.png') }}" style="display:inline-block;">
+				<img src="{{ url_for('static', filename='images/sucy.png') }}" style="display:inline-block;">
+				<img src="{{ url_for('static', filename='images/pinkietwi.gif') }}" style="display:inline-block;">
+				<img src="{{ url_for('static', filename='images/bunnies.gif') }}" style="display:inline-block;">
+				<img src="../static/images/bnuykiss.png" style="display:inline-block;">
+				<img src="../static/images/bunlove.png" style="display:inline-block;">
+				<img src="../static/images/seabunny.gif" style="display:inline-block;">
+				<img src="../static/images/harpseal.png" style="display:inline-block;">
+				<img src="../static/images/shay.png" style="display:inline-block;">
+				<img src="../static/images/emolga.png" style="display:inline-block;">
+				<img src="../static/images/scolipede.gif" style="display:inline-block;">
+				<img src="../static/images/flareonaww.png" style="display:inline-block;">
+				<img src="../static/images/absol.png" style="display:inline-block;">
+				<img src="../static/images/glaceonsparkle.png" style="display:inline-block;">
+				<img src="../static/images/leafeonsparkle.png" style="display:inline-block;">
+				<img src="../static/images/n.png" style="display:inline-block;">
+				<img src="../static/images/nswexy.png" style="display:inline-block;">
+				<img src="../static/images/iono.gif" style="display:inline-block;">
+				<img src="../static/images/3ds.gif" style="display:inline-block;">
+				<img src="../static/images/vee.gif" style="display:inline-block;">
+				<img src="../static/images/girdance.gif" style="display:inline-block;">
+				<img src="../static/images/squee.webp" style="display:inline-block;">
+				<img src="../static/images/ev.gif" style="display:inline-block;">
+				<img src="../static/images/bvb.gif" style="display:inline-block;">
+				<img src="../static/images/nothoughts.png" style="display:inline-block;">
+				<img src="../static/images/popplio.gif" style="display:inline-block;">
+				<img src="../static/images/trannimonroll.png" style="display:inline-block;">
+				<p id="mobileWarning">FYI this site isnt optimized for mobile (yet.... maybe 1 day....) :c</p>
+				{% for note in messages %}
+				<table style="width: 100%;">
+					<tr>
+						<td style="text-align: left; border: 1px solid #007BA7;">{{note.id}} Author: {{note.author}}</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td style="text-align: center; height: 100px;">{{note.message}}</td>
+					</tr>
+				</table>
+				{% endfor%}
+				<!--THIS IS HOW U DO NESTED PAGES, PAGES SHOULDNT HAVE SIDEBARS THO AS THOSE WILL DISPLAY SO BASICALLY ONLY USE THIS 2 LENGTHEN THE
+					   CURRENT PAGE WITHOUT ACTAULLY LENGTHENING IT !!!!!!!!!!!!!!!!!!!!-->
+				<!--<iframe id="frame" src="/blog/template.html" style="position: absolute; left: 0px; bottom: 0px; width:100%; height: 100%;"></iframe>-->
+			</div>
+			<!-- RIGHT SIDEBAR-->
+			<div class="rightsidebar">
+				<h2><b>Blog:</b></h2>
+				<div class="blog-current">
+					<ul>
+						<li><b>You are here:</b></li>
+						<li><a href="/">---Home---</a></li>
+					</ul>
+				</div>
+				<div class="blog-more">
+					<ul>
+						<li><b>Here are some other silly posts:</b></li>
+						<li><a href="/blog?post=1">---Introspection---</a></li>
+						<li><a href="/about">---About Me !---</a></li>
+						<li><a href="/blog?post=2">---My Pokemon Card Binder !---</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- LEFT SIDEBAR-->
+			<div class="leftsidebar">
+				<img id="pfp" src="{{ url_for('static', filename='images/sugarbunny.png') }}" style="display:inline-block;">
+				<div class="test-img">
+					<p>Isnt this pic so awesum sauce !</p>
+					<hr>
+					<h2>Wanna play a game ? ^~^;</h2>
+					<button onclick="document.getElementById('playerSpace').innerHTML =  pickRock()">Rock !</button>
+					<button onclick="document.getElementById('playerSpace').innerHTML =  pickPaper()">Paper !</button>
+					<button onclick="document.getElementById('playerSpace').innerHTML =  pickScissors()">Scissors !</button>
+					<p id="playerSpace"></p>
+					<p id="botSpace"></p>
+					<button onclick="buttonTest()">Get Results !</button>
+					<p id="resultSpace"></p>
+					<button onclick="refresh()">Reset Game !</button>
+				</div>
+			</div>
+		</div>
+    </main>
+    
+    <footer>
+		<img src="{{ url_for('static', filename='images/drpepper.gif') }}" style="display:inline-block;">
+		<img src="{{ url_for('static', filename='images/bunbrowser.gif') }}" style="display:inline-block;">
+    </footer>
+
+  </body>
+</html>
