@@ -186,6 +186,11 @@ footer img {
   overflow: scroll;
 }
 
+.messages {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .about-list-left {
   position: absolute;
   text-align: center;

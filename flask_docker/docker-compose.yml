@@ -1,5 +1,7 @@
 services:
   web:
     build: .
+    volumes:
+      - /home/bunny/bunteeth.net-flask/flask_docker:/app
     ports:
       - "5000:5000"
