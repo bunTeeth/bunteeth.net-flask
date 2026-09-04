@@ -106,6 +106,15 @@ footer img {
   overflow: scroll;
 }
 
+.left-invis {
+  position: absolute;
+  left: 0px;
+  width: 20%;
+  height: 99%;
+  top: 0px;
+  background: transparent;
+}
+
 .test-img {
   position: absolute;
   left: 10px;
@@ -129,6 +138,15 @@ footer img {
   border-right-color: black;
   border-top-color: black;
   border-bottom-color: black; */
+}
+
+.right-invis {
+  position: absolute;
+  right: 0px;
+  width: 20%;
+  height: 99%;
+  top: 0px;
+  background: transparent;
 }
 
 .rightsidebar ul {
@@ -183,6 +201,18 @@ footer img {
   border: 5px solid #4a4318;
   border-right-color: black;
   border-left-color: black;
+  overflow: scroll;
+}
+
+.content-container-solo {
+  position: absolute;
+  left: 20.5%;
+  width: 58.5%;
+  height: 99%;
+  text-align: center;
+  background: #361612;
+  background: linear-gradient(180deg, rgba(54, 22, 18, 1) 0%, rgba(36, 14, 11, 1) 25%, rgba(23, 9, 7, 1) 75%);
+  border: 5px solid #4a4318;
   overflow: scroll;
 }
 

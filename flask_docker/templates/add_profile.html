@@ -1,16 +1,53 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <title>Guestbook Test Form</title>
-   </head>
-   <body>
-      <h3>Send a message !!!!</h3>
-      <form action="/message" method="POST">
-         <label>Author: </label>
-         <input type="text" name="author" placeholder="Ur name here...">
-         <label>Type here: </label>
-         <input type="text" name="note" placeholder="Be nice pls ^-^">
-         <button type="submit">Send!</button>
-      </form>
-   </body>
+  <head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Send a message !</title>
+    <link rel="icon" type="image/png" href="/images/favicon2.png"">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  
+  <body>
+  
+  <header>
+    <!--navigation menu -->
+      <nav>
+        <!-- TODO -->
+            <a href="/"><img id="home-button" src="../static/images/home.png" style="display: inline-block;"></a>
+            <a href="/about.html"><img id="about-button" src="../static/images/about.png" style="display: inline-block;"></a>
+			<a href="https://theatre.bunteeth.net"><img id="theatre-button" src="../static/images/theatre.png" style="display:inline-block;"></a>
+			<a href="https://github.com/bunTeeth"><img id="github-button" src="../static/images/github2.png" style="display:inline-block;"></a>
+            
+      </nav>
+  </header>
+  
+	<main>
+		<div class="body-container">
+			<div class="content-container-solo">
+				<!--TODO-->
+				<h3>Send a message !!!!</h3>
+			        <form action="/message" method="POST">
+         			<label>Author: </label>
+         			<input type="text" name="author" placeholder="Ur name here...">
+         			<label>Type here: </label>
+         			<input type="text" name="note" placeholder="Be nice pls ^-^">
+         			<button type="submit">Send!</button>
+      				</form>
+
+			</div>
+			<div class="right-invis">
+			</div>
+			<div class="left-invis">
+				<!--TODO-->
+			</div>
+		</div>
+	</main>
+  
+	<footeer>
+		<img src="../static/images/drpepper.gif" style="display:inline-block;">
+		<img src="../static/images/bunbrowser.gif" style="display:inline-block;">
+  </footer>
+  
+  </body>
 </html>

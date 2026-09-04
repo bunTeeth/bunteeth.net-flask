@@ -1,7 +1,16 @@
 services:
   web:
     build: .
-    volumes:
-      - /home/bunny/bunteeth.net-flask/flask_docker:/app
     ports:
       - "5000:5000"
+
+#  nginx:
+ #   image: nginx:latest
+  #  container_name: nginx-proxy
+   # ports:
+      # Repace 7080 by your desired port
+    #  - '8080:80'
+   # volumes:
+    #  - /home/bunny/bunteeth.net-flask/flask_docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    #depends_on:
+     # - web
