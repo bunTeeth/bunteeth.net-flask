@@ -34,16 +34,9 @@ function mobileCheck() {
 }
 
 function whenWindowLoads() {
-	if (mobileCheck() == true) {
-		alert("FYI this page isn't optimized 4 mobile");
-	}
 ////////////////////HTTP REDIRECT////////////////////
 	if (currentURL.indexOf("http://site") != -1) {
 		window.location.replace("https://site.bunteeth.net")
-	}
-//////////////////////THIS DOESNT RLY WORK :C//////////////////////
-	if (currentURL.indexOf("neocities") != -1) {
-		document.getElementById('neocities').innerHTML = "Hi neocities viewer ^-^ did u know u can access my site from <a href='https://site.bunteeth.net' style='color:yellow'>here </a>too :3";
 	}
 }
 

@@ -2,21 +2,32 @@
 
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from datetime import datetime
 
 app = Flask(__name__)
 
 # Database config
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bunny:H0lyFw1ck!@db:5432/sitedb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Database instance
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # Define database models
 class Message(db.Model): # Guestbook messages ^-^ rn they js have a message n an author
+	__tablename__ = 'messages'
+
 	id = db.Column(db.Integer, primary_key=True)
 	message = db.Column(db.String(100), unique=False, nullable=False)
 	author = db.Column(db.String(100), unique=False, nullable=False)
+	date_posted = db.Column(db.DateTime, default=datetime.now())
+
+	def __init__(self, message, author, date_posted):
+		self.message = message
+		self.author = author
+		self.date_posted = date_posted
 
 	def __repr__(self):
 		return f"Message: {self.message} Author: {self.author}"
@@ -30,7 +41,7 @@ def index():
 def about():
 	return render_template('about.html')
 
-@app.route('/blog')
+@app.route('/blog/')
 def get_post():
 	post_id = request.args.get("post")
 	return render_template(f'/blog/{post_id}.html')
@@ -43,8 +54,9 @@ def add_data():
 def message():
         message = request.form.get("note")
         author = request.form.get("author")
+        date_posted = datetime.now()
         if message != '' and author != '':
-                m = Message(message=message, author=author)
+                m = Message(message=message, author=author, date_posted=date_posted)
                 db.session.add(m)
                 db.session.commit()
                 return redirect('/')

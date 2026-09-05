@@ -1,16 +1,30 @@
 services:
   web:
     build: .
+    container_name: flask_app
     ports:
       - "5000:5000"
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://bunny:H0lyFw1ck!@db:5433/sitedb
+    depends_on:
+      - db
 
-#  nginx:
- #   image: nginx:latest
-  #  container_name: nginx-proxy
-   # ports:
-      # Repace 7080 by your desired port
-    #  - '8080:80'
-   # volumes:
-    #  - /home/bunny/bunteeth.net-flask/flask_docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-    #depends_on:
-     # - web
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: bunny
+      POSTGRES_PASSWORD: H0lyFw1ck!
+      POSTGRES_DB: sitedb
+    ports:
+      - "5433:5433"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:

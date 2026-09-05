@@ -66,7 +66,7 @@
 				{% for note in messages %}
 				<table style="width: 90%; position: relative; left: 5%;">
 					<tr style="background-color: #123524;">
-						<td style="text-align: left; border: 1px solid #007BA7;">{{note.id}} Author: {{note.author}}</td>
+						<td style="text-align: left; border: 1px solid #007BA7;">{{note.id}} | Author: {{note.author}} | Date Posted: {{note.date_posted.year}}-{{note.date_posted.month}}-{{note.date_posted.day}}</td>
 					</tr>
 					<tr>
 						<td style="text-align: center; height: 100px;">{{note.message}}</td>
