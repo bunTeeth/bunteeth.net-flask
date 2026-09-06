@@ -92,10 +92,15 @@
 				</div>
 				<div class="blog-more">
 					<ul>
-						<li><b>Here are some other silly posts:</b></li>
-						<li><a href="/blog?post=1">---Introspection---</a></li>
+						<li><b>Check out these posts:</b></li>
 						<li><a href="/about">---About Me !---</a></li>
-						<li><a href="/blog?post=2">---My Pokemon Card Binder !---</a></li>
+						{% for post in posts %}
+						<li><a href="/blog/{{post.title}}">---{{post.title}}---
+							<p style="font-size: 10px; color: #007BA7">Posted on: 
+							{{post.date_posted.day}}/
+							{{post.date_posted.month}}/{{post.date_posted.year}}
+							</p></a></li>
+						{% endfor%}
 					</ul>
 				</div>
 			</div>

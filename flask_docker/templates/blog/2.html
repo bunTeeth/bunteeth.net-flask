@@ -39,15 +39,22 @@
 				<div class="blog-current">
 					<ul>
 						<li><b>You are here:</b></li>
-						<li><a href="/blog?post=22">---My Pokemon Card Binder  !---</a></li>
+						<li><a href="/blog/{{current}}">---{{current}}---</a></li>
 					</ul>
 				</div>
 				<div class="blog-more">
 					<ul>
-						<li><b>Here are some other silly posts:</b></li>
-						<li><a href="/blog?post=1">---Introspection---</a></li>
-						<li><a href="/about">---About Me !---</a></li>
-					</ul>
+                                                <li><b>Check out these posts:</b></li>
+                                                <li><a href="/about">---About Me !---</a></li>
+                                                {% for post in posts if post.title != current%}
+                                                <li><a href="/blog/{{post.title}}">---{{post.title}}---
+                                                        <p style="font-size: 10px; color: #007BA7">Posted on:
+                                                        {{post.date_posted.day}}/
+                                                        {{post.date_posted.month}}/{{post.date_posted.year}}
+                                                        </p></a></li>
+                                                {% endfor%}
+                                        </ul>
+
 				</div>
 				</ul>
 			</div>
