@@ -92,9 +92,10 @@ footer img {
 }
 
 .leftsidebar {
+  box-sizing: border-box;
   position: absolute;
   left: 0px;
-  width: 20%;
+  width: 19.7%;
   height: 99%;
   top: 0px;
 /*  background: transparent; */
@@ -123,6 +124,7 @@ footer img {
 }
 
 .rightsidebar {
+  box-sizing: border-box;
   position: absolute;
   right: 0px;
   width: 20%;
@@ -152,6 +154,8 @@ footer img {
 .rightsidebar ul {
   position: absolute;
   text-align: left;
+  left: 0px;
+  padding: 10px;
   list-style-type: none;
 /*  list-style-image: url('https://pixelsafari.neocities.org/favicon/nature/plant/flower/blue9.gif'); */
 }
@@ -178,11 +182,13 @@ footer img {
 }
 
 .content-container {
+  box-sizing: border-box;
   position: absolute;
-  left: 20.5%;
-  width: 58.5%;
+  left: 19.8%;
+  width: 60.2%;
   height: 99%;
   text-align: center;
+  padding: 10px;
   /* PURPLE */
   /* background: #48205e;
   background: linear-gradient(180deg, rgba(72, 32, 94, 1) 0%, rgba(41, 18, 54, 1) 25%, rgba(21, 9, 28, 1) 75%); */

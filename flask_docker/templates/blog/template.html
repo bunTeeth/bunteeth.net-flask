@@ -3,26 +3,52 @@
   <head>
     <meta charset="UTF-8">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <title>Chloe's Blog | My Binder</title>
-    <link rel="icon" type="image/gif" href="/images/favicon-32x32.ico">
-    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all">
-	<script src="/js/script.js"></script>
+    <title>bunTeeth.net | My Binder</title>
+    <link rel="icon" type="image/png" href="../../static/images/favicon2.png">
+    <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all">
+	<script src="../../static/js/script.js"></script>
 
   </head>
   
-  <body style="background: #6e6e6e; background: linear-gradient(180deg, rgba(110, 110, 110, 1) 0%, rgba(77, 77, 77, 1) 25%, rgba(43, 43, 43, 1) 75%);">
+  <body>
   
   <header>
   </header>
   
 	<main>
 		<div class="body-container">
-			<h1>test</h1>
+			<div class="content-container">
+			</div>
+			<div class="rightsidebar">
+				<h2><b>Blog:</b></h2>
+                                <div class="blog-current">
+                                        <ul>
+                                                <li><b>You are here:</b></li>
+                                                <li><a href="/blog/{{current}}">---{{current}}---</a></li>
+                                        </ul>
+                                </div>
+                                <div class="blog-more">
+                                        <ul>
+                                                <li><b>Check out these posts:</b></li>
+                                                <li><a href="/about">---About Me !---</a></li>
+                                                {% for post in posts if post.title != current%}
+                                                <li><a href="/blog/{{post.title}}">---{{post.title}}---
+                                                        <p style="font-size: 10px; color: #007BA7">Posted on:
+                                                        {{post.date_posted.day}}/
+                                                        {{post.date_posted.month}}/{{post.date_posted.year}}
+                                                        </p></a></li>
+                                                {% endfor%}
+			</div>
+			<div class="leftsidebar">
+			</div>
 		</div>
 	</main>
   
 	<footer>
-  </footer>
+		<img src="../../static/images/drpepper.gif" style="display:inline-block;">
+                <img src="../../static/images/bunbrowser.gif" style="display:inline-block;">
+
+  	</footer>
   
   </body>
 </html>

@@ -61,18 +61,16 @@
 				<img src="../static/images/popplio.gif" style="display:inline-block;">
 				<img src="../static/images/trannimonroll.png" style="display:inline-block;">
 				<p id="mobileWarning">FYI this site isnt optimized for mobile (yet.... maybe 1 day....) :c</p>
-				<a href="/add_data"<button>Send a message !</button></a>
+				<a href="/add_data"><button>Send a message !</button></a>
 				<div class="messages">
 				{% for note in messages %}
 				<table style="width: 90%; position: relative; left: 5%;">
 					<tr style="background-color: #123524;">
-						<td style="text-align: left; border: 1px solid #007BA7;">{{note.id}} | Author: {{note.author}} | Date Posted: {{note.date_posted.year}}-{{note.date_posted.month}}-{{note.date_posted.day}}</td>
+						<td style="text-align: left; border: 1px solid #007BA7;">Author: {{note.author}} | Date Posted: {{note.date_posted.day}}/
+						{{note.date_posted.month}}/{{note.date_posted.year}}</td>
 					</tr>
 					<tr>
 						<td style="text-align: center; height: 100px;">{{note.message}}</td>
-					</tr>
-					<tr>
-						<td><a href="/erase/{{note.id}}"><button>Erase</button></a></td>
 					</tr>
 				</table>
 				{% endfor%}
