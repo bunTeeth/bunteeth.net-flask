@@ -78,8 +78,9 @@
   </main>
   
   <footer>
-		<img src="{{ url_for('static', filename='images/drpepper.gif') }}" style="display:inline-block;">
-		<img src="{{ url_for('static', filename='images/bunbrowser.gif') }}" style="display:inline-block;">
+        {% for wb in web_buttons %}
+        <img src="../static/images/{{wb.filename}}" style="display:inline-block;">
+  	{% endfor%}
   </footer>
   
   </body>

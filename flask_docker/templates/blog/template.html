@@ -45,9 +45,9 @@
 	</main>
   
 	<footer>
-		<img src="../../static/images/drpepper.gif" style="display:inline-block;">
-                <img src="../../static/images/bunbrowser.gif" style="display:inline-block;">
-
+                {% for wb in web_buttons %}
+                <img src="../../static/images/{{wb.filename}}" style="display:inline-block;">
+                {% endfor%}
   	</footer>
   
   </body>

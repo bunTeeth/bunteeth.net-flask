@@ -61,25 +61,41 @@ class BlogPost(db.Model): # Blog Posts should take an id (obvs), a title 4 sideb
 	def __repr__(self):
 		return f"Title: {self.title}"
 
+class WebButton(db.Model): # Idk how 2 store images so itll just take in the name of the file as well as an id
+	__tablename__ = 'web_buttons'			# (Might b temporary if i ever figure out a better way)
+
+	id = db.Column(db.Integer, primary_key=True)
+	filename = db.Column(db.String(100), unique=True, nullable=False)
+
+	def __init__(self, filename):
+		self.filename = filename
+
+	def __repr__(self):
+		return f"File: {self.filename}"
+
 # Define App Routes
 
 @app.route('/') # Serve the home page and take in all database models
 def index():
 	messages = Message.query.all() # Allow serving of guestbook messages
 	posts = BlogPost.query.all() # Enable automatic updating of blog sidebar when posts are added
-	return render_template('index.html', messages=messages, posts=posts)
+	web_buttons = WebButton.query.all() # Grab filenames 2 avoid endless copy-pasting
+	return render_template('index.html', messages=messages, posts=posts, web_buttons=web_buttons)
 
 @app.route('/about') # Serve the about me page ! (might put this in blog eventually, idk)
 def about():
-	posts = BlogPost.query.all() # Enable blog
-	return render_template('about.html', posts=posts)
+	posts = BlogPost.query.all()
+	web_buttons = WebButton.query.all()
+	return render_template('about.html', posts=posts, web_buttons=web_buttons)
 
 @app.route('/blog/<title>') # Serve specific blog post based on the title of the post
 def get_post(title):
 	post = db.one_or_404(db.select(BlogPost).filter_by(title=title)) # Get the post by its title
-	posts = BlogPost.query.all() # Allow serving of blog posts
-	return render_template(f'/blog/{post.id}.html', posts=posts, current=title) # takes in post object and
-										# currently displayed posts title
+	posts = BlogPost.query.all()
+	web_buttons = WebButton.query.all()
+	return render_template(f'/blog/{post.id}.html', posts=posts, current=title, web_buttons=web_buttons)
+								# takes in post object and
+								# currently displayed posts title
 
 @app.route('/add_data') # Serve guestbook form
 def add_data():

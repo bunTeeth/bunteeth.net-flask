@@ -1,0 +1,6 @@
+# Flask Secret Key (line #1)
+super secret key
+# Postgres Password (line #3)
+database username
+# Postgres Password (line #5)
+database password

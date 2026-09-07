@@ -78,7 +78,38 @@ footer {
 }
 
 footer img {
+  position: relative;
+  bottom: 20px;
   width: 7%;
+}
+
+:root {
+  --no-of-slides: 2;
+  --carousel-width: 100px;
+  --slide-width: 88px;
+  --loop-time: 2s;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: var(--carousel-width);
+}  
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(var(--slide-width) * var(--no-of-slides)* -1));
+  }
+}
+
+.ad {
+  animation: scroll var(--loop-time) linear infinite;
+  width: var(--slide-width);
+  height: fit-content;
 }
 
 .body-container {
