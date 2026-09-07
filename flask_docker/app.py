@@ -28,7 +28,7 @@ app.config['SECRET_KEY'] = f'{key}'
 
 # Database instance
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+migrate = Migrate(app, db) # I dont think this is necessary the way things r set up rn, but who knows
 
 # Define Database Models
 class Message(db.Model): # Guestbook messages ^-^ rn they js have a message n an author
@@ -74,7 +74,6 @@ class WebButton(db.Model): # Idk how 2 store images so itll just take in the nam
 		return f"File: {self.filename}"
 
 # Define App Routes
-
 @app.route('/') # Serve the home page and take in all database models
 def index():
 	messages = Message.query.all() # Allow serving of guestbook messages
