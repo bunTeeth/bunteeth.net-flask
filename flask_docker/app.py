@@ -30,6 +30,12 @@ app.config['SECRET_KEY'] = f'{key}'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db) # I dont think this is necessary the way things r set up rn, but who knows
 
+# Music Player Playlist
+playlist = {
+	1: ("LosT.mp3", "LosT - Bring Me The Horizon"),
+	2: ("No Love In LA.mp3", "No Love In LA - Palaye Royale"),
+	3: ("Detroit.mp3", "Detroit - Badflower")
+}
 # Define Database Models
 class Message(db.Model): # Guestbook messages ^-^ rn they js have a message n an author
 	__tablename__ = 'messages'
@@ -79,7 +85,8 @@ def index():
 	messages = Message.query.all() # Allow serving of guestbook messages
 	posts = BlogPost.query.all() # Enable automatic updating of blog sidebar when posts are added
 	web_buttons = WebButton.query.all() # Grab filenames 2 avoid endless copy-pasting
-	return render_template('index.html', messages=messages, posts=posts, web_buttons=web_buttons)
+	song = playlist
+	return render_template('index.html', messages=messages, posts=posts, web_buttons=web_buttons, song=song)
 
 @app.route('/about') # Serve the about me page ! (might put this in blog eventually, idk)
 def about():
