@@ -4,7 +4,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 # App !
@@ -104,7 +104,9 @@ def add_data():
 def message():
 	message = request.form.get("note") # Retrieves the message content from the sent form
 	author = request.form.get("author") # Retrieves the author from the sent form
-	date_posted = datetime.now() # Sets the date of the message
+	time_offset = -4.0
+	tzinfo = timezone(timedelta(hours=time_offset))
+	date_posted = datetime.now(tzinfo) # Sets the date of the message
 	if message != '' and author != '': # If author is provided, display it
 		m = Message(message=message, author=author, date_posted=date_posted)
 		db.session.add(m)

@@ -24,7 +24,6 @@ const pagePics = new Map();
 	pagePics.set(5, "url('/static/images/page5.png')");
 	pagePics.set(6, "url('/static/images/page6.png')");
 	pagePics.set(7, "url('/static/images/page7.png')");
-
 // CHECK 4 MOBILE DEVICE & DISPLAY WARNING
 window.onload = whenWindowLoads();
 function mobileCheck() {
@@ -139,4 +138,14 @@ function refresh() {
 
 function changeIFrame(url) {
 	document.getElementById('frame').setAttribute("src", url)
+}
+
+function playAudio() {
+	let x = document.getElementById('myAudio');
+	x.play();
+}
+
+function pauseAudio() {
+	let x = document.getElementById('myAudio');
+	x.pause();
 }
