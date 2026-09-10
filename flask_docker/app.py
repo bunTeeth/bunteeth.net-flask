@@ -34,7 +34,8 @@ migrate = Migrate(app, db) # I dont think this is necessary the way things r set
 playlist = {
 	1: ("LosT.mp3", "LosT - Bring Me The Horizon"),
 	2: ("No Love In LA.mp3", "No Love In LA - Palaye Royale"),
-	3: ("Detroit.mp3", "Detroit - Badflower")
+	3: ("Detroit.mp3", "Detroit - Badflower"),
+	4: ("Modern Life Is Lonely.mp3", "Modern Life Is Lonely - Holding Absence")
 }
 # Define Database Models
 class Message(db.Model): # Guestbook messages ^-^ rn they js have a message n an author

@@ -31,6 +31,7 @@ const playlist = new Map();
 	playlist.set(1, "LosT - Bring Me The Horizon");
 	playlist.set(2, "No Love In LA - Palaye Royale");
 	playlist.set(3, "Detroit - Badflower");
+	playlist.set(4, "Modern Life Is Lonely - Holding Absence");
 //////////SET DEFAULT SONG////////////
 let current_song = playlist.get(1);
 // CHECK 4 MOBILE DEVICE & DISPLAY WARNING
@@ -165,33 +166,51 @@ function changeIFrame(url) {
 	document.getElementById('frame').setAttribute("src", url)
 }
 /////////////////MUSIC PLAYER FUNCTIONS/////////////////////////
+
+function switchPlayPause(status) {
+	if (status == 'play') {
+		document.getElementById('play-button').style.display = 'inline';
+		document.getElementById('pause-button').style.display = 'none';
+	} else if (status == 'pause') {
+		document.getElementById('play-button').style.display = 'none';
+                document.getElementById('pause-button').style.display = 'inline';
+	}
+}
+
 function playAudio(audioID) {
 	let audio_id = document.getElementById(audioID);
-	current_song = playlist.get(getByValue(playlist, audioID))
+	current_song = playlist.get(getByValue(playlist, audioID));
+	audio_id.volume = 0.5;
 	audio_id.play();
-	document.getElementById('now-playing').innerHTML = "Now Playing: " + audioID;
+	document.getElementById('now-playing').innerHTML = audioID;
+	switchPlayPause('pause');
 }
 
 function resumeAudio() {
 	let audio_id = document.getElementById(current_song);
+	audio_id.volume = 0.5;
 	audio_id.play();
-	document.getElementById('now-playing').innerHTML = "Now Playing: " + current_song;
+	document.getElementById('now-playing').innerHTML = current_song;
+	switchPlayPause('pause');
+
 }
 
 function stopAudio() {
 	let audio_id = document.getElementById(current_song);
 	audio_id.currentTime = 0;
 	audio_id.pause();
+	switchPlayPause('play');
 }
 
 function pauseAudio() {
 	let audio_id = document.getElementById(current_song);
 	audio_id.pause();
+	switchPlayPause('play');
 }
 
 function nextAudio() {
 	song_counter += 1;
-	if (song_counter > 3) {
+	if (song_counter > 4) {
 		song_counter = 1;
 	}
 	let audio_id = document.getElementById(current_song);
@@ -205,7 +224,7 @@ function nextAudio() {
 function prevAudio() {
 	song_counter -= 1;
 	if (song_counter < 1) {
-		song_counter = 3;
+		song_counter = 4;
 	}
 	let audio_id = document.getElementById(current_song);
 	stopAudio(audio_id)

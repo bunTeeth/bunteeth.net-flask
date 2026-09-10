@@ -123,7 +123,7 @@
 					<p id="resultSpace"></p>
 					<button onclick="refresh()">Reset Game !</button>
 				</div>
-				<div class="music-player">
+				<div class="music-player-tracks">
 					{% for s in song %}
 					<audio id="{{song[s][1]}}" src="../static/audio/{{song[s][0]}}"></audio>
 					{% endfor%}
@@ -131,17 +131,20 @@
 					{% for s in song %}
 					<p>{{song[s][1]}}</p>
 					{% endfor%}
+				</div>
+				<div class="music-controls">
 					<button onclick="prevAudio()" type="button">
 					<img src="../static/images/skip_prev.png" style="width: 30%"></button>
-					<button onclick="resumeAudio()" type="button">
+					<button id="play-button" onclick="resumeAudio()" type="button" style="display: inline;">
 					<img src="../static/images/play.png" style="width: 30%;"></button>
-					<button onclick="pauseAudio()" type="button">
+					<button id="pause-button" onclick="pauseAudio()" type="button" style="display: none;">
 					<img src="../static/images/pause.png" style="width: 30%;"></button>
 					<button onclick="stopAudio()" type="button">
 					<img src="../static/images/stop.png" style="width: 30%"></button>
 					<button onclick="nextAudio()" type="button">
 					<img src="../static/images/skip_next.png" style="width: 30%;"></button>
-					<p id="now-playing" style="color: #007BA7;">Now Playing: Nothing :c</p>
+					<p>Now Playing: <span id="now-playing" style="color: #007BA7;">Nothing :c
+					</span></p>
 				</div>
 			</div>
 		</div>

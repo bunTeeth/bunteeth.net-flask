@@ -147,18 +147,43 @@ footer img {
   background: transparent;
 }
 
-.music-player {
+.music-player-tracks {
   position: absolute;
-  top: 500px;
-  width: 98%
-  left: 1%;
+  top: 600px;
+  width: 96%
+  height: 200px;
+  left: 2%;
+  background: #123524;
+  background: linear-gradient(180deg, rgba(18, 53, 36, 1) 0%, rgba(11, 31, 21, 1) 25%, rgba(6, 18, 12, 1) 75%);
   border: 2px solid #007BA7;
+  border-bottom: transparent;
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
-.music-player button {
+.music-controls {
+  position: absolute;
+  top: 805px;
+  width: 94.5%;
+  height: 150px;
+  left: 2%;
+  background: #361612;
+  background: linear-gradient(180deg, rgba(54, 22, 18, 1) 0%, rgba(36, 14, 11, 1) 25%, rgba(23, 9, 7, 1) 75%);
+  border: 2px solid #007BA7;
+/*  border-top: transparent;*/
+  overflow: hidden;
+}
+
+.music-controls button {
+  position: relative;
+  top: 30px;
   width: 20%;
+  background-repeat: no-repeat;
+}
+
+.music-controls p {
+  position: relative;
+  top: 30px;
 }
 
 .test-img {
