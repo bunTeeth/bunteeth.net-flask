@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>bunTeeth.net | Admin Login</title>
+    <link rel="icon" type="image/png" href="../../static/images/favicon2.png">
+    <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all">
+	<script src="../../static/js/script.js"></script>
+
+  </head>
+  
+  <body>
+  
+  <header>
+	<nav>
+            <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
+            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
+                        <a href="https://theatre.bunteeth.net"><img id="theatre-button" src="{{ url_for('static', filename='images/theatre.png') }}" style="display:inline-block;"></a>
+                        <a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display:inline-block;"></a>
+      </nav>
+  </header>
+  
+	<main>
+		<div class="body-container">
+			<div class="content-container-solo">
+				<h3>Admin Login:</h3>
+				<form action="/admin_login" method="POST">
+					<label>Username: </label>
+					<input type="test" name="admin-user" placeholder="Username Here">
+					<label>Password: </label>
+					<input type="text" name="admin-pword" placeholder="Password Here">
+					<button type="submit">Login !</button>
+				</form>
+				<h3 style="color: #007BA7">{{login_fail}}<h3>
+			</div>
+			<div class="left-invis">
+			</div>
+			<div class="right-invis">
+			</div>
+		</div>
+	</main>
+  
+	<footer>
+                {% for wb in web_buttons %}
+                <img src="../../static/images/{{wb.filename}}" style="display:inline-block;">
+                {% endfor%}
+  	</footer>
+  
+  </body>
+</html>

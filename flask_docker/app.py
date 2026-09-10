@@ -19,6 +19,8 @@ config_lines = config_file.readlines()
 key = config_lines[1].rstrip()
 db_user = config_lines[3].rstrip()
 db_pass = config_lines[5].rstrip()
+admin_user = config_lines[7].rstrip()
+admin_pword = config_lines[9].rstrip()
 
 # Database config
 app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_pass}@db:5432/sitedb'
@@ -37,6 +39,11 @@ playlist = {
 	3: ("Detroit.mp3", "Detroit - Badflower"),
 	4: ("Modern Life Is Lonely.mp3", "Modern Life Is Lonely - Holding Absence")
 }
+
+# Global variables
+login_fail = ""
+admin_logged_in = False
+
 # Define Database Models
 class Message(db.Model): # Guestbook messages ^-^ rn they js have a message n an author
 	__tablename__ = 'messages'
@@ -103,6 +110,82 @@ def get_post(title):
 	return render_template(f'/blog/{post.id}.html', posts=posts, current=title, web_buttons=web_buttons)
 								# takes in post object and
 								# currently displayed posts title
+
+@app.route('/admin')
+def admin():
+	web_buttons = WebButton.query.all()
+	login_fail = ""
+	return render_template('admin_login.html', web_buttons=web_buttons, login_fail=login_fail)
+
+@app.route('/admin_login', methods=["POST"])
+def admin_login():
+	global admin_logged_in
+	web_buttons = WebButton.query.all()
+	username = request.form.get('admin-user')
+	password = request.form.get('admin-pword')
+	if username == f'{admin_user}' and password == f'{admin_pword}':
+		admin_logged_in = True
+		return redirect('/moderation-panel')
+	else:
+		login_fail = "Login Failed (stop pls ^~^;)"
+		return render_template('admin_login.html', web_buttons=web_buttons, login_fail=login_fail)
+
+# SECTION FOR MOD PANEL ACTIONS
+@app.route('/moderation-panel')
+def blog_manager():
+	global admin_logged_in
+	posts = BlogPost.query.all()
+	web_buttons = WebButton.query.all()
+	messages = Message.query.all()
+	if admin_logged_in:
+		admin_logged_in = False
+		return render_template('moderation_panel.html', posts=posts, web_buttons=web_buttons, messages=messages)
+	else:
+		return redirect('/admin')
+
+@app.route('/create-blog-post', methods=["POST"])
+def add_post():
+	title = request.form.get("title")
+	time_offset = -4.0
+	tzinfo = timezone(timedelta(hours=time_offset))
+	date_posted = datetime.now(tzinfo)
+	if title != '':
+		p = BlogPost(title=title, date_posted=date_posted)
+		db.session.add(p)
+		db.session.commit()
+		return redirect('/')
+	else:
+		return redirect('/')
+
+@app.route('/edit-blog-title/<int:id>', methods=["POST"])
+def new_title(id):
+	new_title = request.form.get("new-title")
+	time_offset = -4.0
+	tzinfo = timezone(timedelta(hours=time_offset))
+	new_date_posted = datetime.now(tzinfo)
+	if new_title != '':
+		p = db.session.get(BlogPost, id)
+		p.title = new_title
+		p.date_posted = new_date_posted
+		db.session.commit()
+		return redirect('/')
+	else:
+		return redirect('/')
+
+
+@app.route('/erase-blog-id/<int:id>')
+def erase_post(id):
+	data = db.session.get(BlogPost, id)
+	db.session.delete(data)
+	db.session.commit()
+	return redirect('/')
+
+@app.route('/erase-message/<int:id>')
+def erase_message(id):
+	data = db.session.get(Message, id)
+	db.session.delete(data)
+	db.session.commit()
+	return redirect('/')
 
 @app.route('/add_data') # Serve guestbook form
 def add_data():

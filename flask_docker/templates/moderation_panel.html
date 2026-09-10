@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>bunTeeth.net | Moderation</title>
+    <link rel="icon" type="image/png" href="../../static/images/favicon2.png">
+    <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all">
+	<script src="../../static/js/script.js"></script>
+
+  </head>
+  
+  <body>
+  
+  <header>
+	<nav>
+            <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
+            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
+                        <a href="https://theatre.bunteeth.net"><img id="theatre-button" src="{{ url_for('static', filename='images/theatre.png') }}" style="display:inline-block;"></a>
+                        <a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display:inline-block;"></a>
+      </nav>
+  </header>
+  
+	<main>
+		<div class="body-container">
+			<div class="content-container-solo">
+				<h3>Blog Post Manager:</h3>
+				<h2>Add Post:</h2>
+				<form action="/create-blog-post" method="POST">
+				<label>Title: </label>
+				<input type="text" name="title" placeholder="Title,,,">
+				<button type="submit">Add !</button>
+				</form>
+				<h2>Erase Existing Posts:</h2>
+				<div class="messages">
+				{% for post in posts %}
+					<table style="width: 90%; position: relative; left: 5%">
+						<tr style="background-color: #123524;">
+							<td style="text-align: left; border: 1px solid #007BA7">
+								id: {{post.id}} | date: {{post.date_posted}}</td>
+						</tr>
+						<tr>
+							<td style="text-align: center; height: 100px;">{{post.title}}</td>
+						</tr>
+						<tr>
+							<td style="text-align: center;"><a href="/erase-blog-id/{{post.id}}"><button>Erase</button></a></td>
+						</tr>
+						<tr>
+							<td><form action="/edit-blog-title/{{post.id}}" method="POST">
+							<input type="text" name="new-title" placeholder="Title,,,">
+							<button type="submit">Submit !</button></form></td>
+						</tr>
+					</table>
+				{% endfor%}
+				</div>
+				<h3>Erase Messages:</h3>
+				<div class="messages">
+                                {% for note in messages %}
+                                <table style="width: 90%; position: relative; left: 5%;">
+                                        <tr style="background-color: #123524;">
+                                                <td style="text-align: left; border: 1px solid #007BA7;">Author: {{note.author}} | Date Posted: {{note.date_posted.day}}/
+                                                {{note.date_posted.month}}/{{note.date_posted.year}}</td>
+                                        </tr>
+                                        <tr>
+                                                <td style="text-align: center; height: 100px;">{{note.message}}</td>
+                                        </tr>
+					<tr>
+						<td><a href="/erase-message/{{note.id}}"<button>Erase</button></a></td>
+					</tr>
+                                </table>
+                                {% endfor%}
+                                </div>
+			</div>
+			<div class="left-invis">
+			</div>
+			<div class="right-invis">
+			</div>
+		</div>
+	</main>
+  
+	<footer>
+                {% for wb in web_buttons %}
+                <img src="../../static/images/{{wb.filename}}" style="display:inline-block;">
+                {% endfor%}
+  	</footer>
+  
+  </body>
+</html>
