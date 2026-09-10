@@ -6,6 +6,8 @@ let playerPick = "String"
 //////SET PAGE 1//////
 let binderPageNum = 1;
 let binderPageCaption = 1;
+///////SET DEFAULT TRACK NUMBER///////////
+let song_counter = 1;
 //////////////////SET CAPTIONS//////////////////////////
 const captions = new Map();
 	captions.set(1, " Here's my opening page of Glaceon & Leafeon. This page is for non-illustration rares. All I'm  missing rn are GX's. ^-^");
@@ -24,14 +26,13 @@ const pagePics = new Map();
 	pagePics.set(5, "url('/static/images/page5.png')");
 	pagePics.set(6, "url('/static/images/page6.png')");
 	pagePics.set(7, "url('/static/images/page7.png')");
-//
+////////////PLAYLIST 4 MUSIC PLAYER////////////////
 const playlist = new Map();
 	playlist.set(1, "LosT - Bring Me The Horizon");
 	playlist.set(2, "No Love In LA - Palaye Royale");
 	playlist.set(3, "Detroit - Badflower");
+//////////SET DEFAULT SONG////////////
 let current_song = playlist.get(1);
-let song_counter = 1;
-let is_playing = 0; //0 = nothing playing//
 // CHECK 4 MOBILE DEVICE & DISPLAY WARNING
 window.onload = whenWindowLoads();
 function mobileCheck() {
@@ -45,6 +46,13 @@ function whenWindowLoads() {
 	if (currentURL.indexOf("http://site") != -1) {
 		window.location.replace("https://site.bunteeth.net")
 	}
+}
+////////////////////GET MAP KEYS////////////////////
+function getByValue(map, searchValue) {
+  for (let [key, value] of map.entries()) {
+    if (value === searchValue)
+      return key;
+  }
 }
 
 ///////////////////////BUTTON FUNCTIONALITY 4 BINDER BLOG POST///////////////////////
@@ -117,6 +125,7 @@ function pickScissors() {
 }
 ///////////////////COMPARES PLAYER CHOICE 2 BOT CHOICE///////////////////
 function gameResults() {
+	///////////WIN CONS////////////
 	if (botPick == 1 && playerPick == "You picked Paper !") {
 		document.getElementById('resultSpace').innerHTML = "YOU WIN";
 		playerPick = "String";
@@ -126,11 +135,19 @@ function gameResults() {
 	} else if (botPick== 3 && playerPick == "You picked Rock !") {
 		document.getElementById('resultSpace').innerHTML = "YOU WIN";
 		playerPick = "String";
+	/////////TIES//////////////
+	} else if (botPick == 1 && playerPick == "You picked Rock !") {
+		document.getElementById('resultSpace').innerHTML = "It's a tie :/";
+	} else if (botPick == 2 && playerPick == "You picked Paper !") {
+		document.getElementById('resultSpace').innerHTML = "It's a tie :/";
+	} else if (botPick == 3 && playerPick == "You picked Scissors !") {
+		document.getElementById('resultSpace').innerHTML = "It's a tie :/";
+	/////////////NO CHOICE///////////////
 	} else if (playerPick == "String") {
-		document.getElementById('resultSpace').innerHTML = "ok like at least pick something >:l";
-		document.getElementById('botSpace').innerHTML = "";
-		document.getElementById('playerSpace').innerHTML = "";
-	} else {
+                document.getElementById('resultSpace').innerHTML = "ok like at least pick something >:l";
+                document.getElementById('botSpace').innerHTML = "";
+                document.getElementById('playerSpace').innerHTML = "";
+	} else { /////////LOSSES/////////////
 		playerPick = "String";
 		return 	document.getElementById('resultSpace').innerHTML = "Awwww u lose :c";
 	}
@@ -147,14 +164,7 @@ function refresh() {
 function changeIFrame(url) {
 	document.getElementById('frame').setAttribute("src", url)
 }
-
-function getByValue(map, searchValue) {
-  for (let [key, value] of map.entries()) {
-    if (value === searchValue)
-      return key;
-  }
-}
-
+/////////////////MUSIC PLAYER FUNCTIONS/////////////////////////
 function playAudio(audioID) {
 	let audio_id = document.getElementById(audioID);
 	current_song = playlist.get(getByValue(playlist, audioID))
@@ -165,7 +175,7 @@ function playAudio(audioID) {
 function resumeAudio() {
 	let audio_id = document.getElementById(current_song);
 	audio_id.play();
-	document.getElementById('now-playing').innerHTML = "Now Playing: " + audio_id;
+	document.getElementById('now-playing').innerHTML = "Now Playing: " + current_song;
 }
 
 function stopAudio() {

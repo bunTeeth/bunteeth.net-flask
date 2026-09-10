@@ -147,6 +147,20 @@ footer img {
   background: transparent;
 }
 
+.music-player {
+  position: absolute;
+  top: 500px;
+  width: 98%
+  left: 1%;
+  border: 2px solid #007BA7;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.music-player button {
+  width: 20%;
+}
+
 .test-img {
   position: absolute;
   left: 10px;
