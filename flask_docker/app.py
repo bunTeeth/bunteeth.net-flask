@@ -1,20 +1,22 @@
 #!/bin/env python3
 
 # Imports
-from flask import Flask, render_template, request, redirect
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+from flask import Flask, redirect, render_template, request
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 
 # App !
 app = Flask(__name__)
 
 # Read config file in home directory (upload 2 NAS !)
 config_path = Path(__file__).parent / "app_config.txt"
-config_file = open(config_path, "r", encoding="utf-8")
-config_lines = config_file.readlines()
-
+#config_file = open(config_path, "r", encoding="utf-8")
+#config_lines = config_file.readlines()
+with open(config_path, "r", encoding="utf-8") as config_file:
+	config_lines = config_file.readlines()
 # Set config variables
 key = config_lines[1].rstrip()
 db_user = config_lines[3].rstrip()

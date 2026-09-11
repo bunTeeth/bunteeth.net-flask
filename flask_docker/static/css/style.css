@@ -54,7 +54,7 @@ table, tr {
 }
 
 hr {
-border: 2.5px solid #361612;
+border: 2.5px solid #4a4318;
 }
 
 main {
@@ -95,7 +95,7 @@ footer img {
   align-items: center;
   overflow: hidden;
   width: var(--carousel-width);
-}  
+}
 
 @keyframes scroll {
   0% {
@@ -293,6 +293,10 @@ footer img {
   background: linear-gradient(180deg, rgba(54, 22, 18, 1) 0%, rgba(36, 14, 11, 1) 25%, rgba(23, 9, 7, 1) 75%);
   border: 5px solid #4a4318;
   overflow: scroll;
+}
+
+.content-container img {
+  border: 5px solid #4a4318;
 }
 
 .messages {

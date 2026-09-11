@@ -12,21 +12,79 @@
 	 <nav>
         <!-- TODO -->
             <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
-            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;">
+            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
             <a href="https://theatre.bunteeth.net"><img id="theatre-button" src="{{ url_for('static', filename='images/theatre.png') }}" style="display: inline-block;"></a>
             <a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display: inline-block;"></a>
 
 	</nav>
-  
+
   <body>
-  
+
   <header>
   </header>
-  
+
 	<main>
 		<div class="body-container">
 			<div class="content-container">
 				<h1>Making a Website is Hard... But Super Rewarding !</h1>
+				<h3>(It's given me so many migraines though...)</h3>
+				<hr style="position: relative; top: 50px;">
+				<div style="position: relative; top: 50px;">
+				    <p style="font-size: 20px;"><b>Hi! In this post I'm gonna go over how I began my website making journey. I might even make a
+				    series of tutorials going over each major step I took to get my website from a crummy single static
+				    page on Neocities to this pretty nice dynamic site running Flask and PostreSQL.</b></p>
+					<hr style="position: relative;">
+				    <img src="../../static/images/super-old-site.png" style="width: 80%; position: relative; top: 50px;">
+				    <p style="font-size: 14px; position: relative; top: 50px;">This is what my site looked like from summer 2025 to about august 2026</p>
+				    <p style="position: relative; top: 100px;"><b>I was excited at first to start making a site
+				    on Neocities because it seemed so cool in concept
+				    and I had lots of ideas (or so I thought) of what I could make, but I quickly realized just how daunting
+				    of a task it is to learn HTML, CSS, and JavaScript, as well as color theory, composition and
+				    coming up with ideas of features to add to the site.</b></p>
+				    <hr style="position: relative; top: 100px;">
+				    <p style="position: relative; top: 100px;"><b>For basically an entire year my hopes & dreams of making a
+				    website laid dormant until I was researching alternatives to tailscale for remotely connecting
+				    to my homelab. I decided to go with Cloudflare tunnels and while I was at it i decided to browse their
+				    list of available domain names for fun and tried searching for my current username, bunTeeth, and
+				    came across bunTeeth.net and noticed it was fairly cheap at only $12 CAD per year, so I swiftly bought it.
+				    Spending money on that domain ended up being a pretty good motivator for picking back up my goal of making
+				    a website!</b></p>
+				    <p style="position: relative; top: 100px;"><b>After quickly brushing up on my admittedly sparse
+				    knowledge of web design up until this point I got to work learning even more ways to utilize the main
+				    three web design languages from sites like W3Schools, GeeksforGeeks, and of course StackOverflow.
+				    After a few days of trial and error I figured out how to use div tags to build the following layout
+				    for my site, which I still use to this day.</b></p>
+				    <img src="../../static/images/site-layout.png" style="width: 80%; position: relative; top: 100px;">
+				    <p style="font-size: 14px; position: relative; top: 100px;">The layout I thought up
+				    (I still haven't figured out what to put on the left sidebar though...)</p>
+				    <hr style="position: relative; top: 100px;">
+				    <p style="position: relative; top: 100px;"><b>Once I got the layout set up next it was time to
+				    figure out what colors everything should be. As you can see from the images below, I went through
+				    a lot of options when coming up with the best looking (to me, at least) color scheme.</b></p>
+				    <div style="position: relative; top: 100px;">
+				        <img src="../../static/images/site-colors-1.png" style="width: 50%; position: absolute; left: 0px;">
+						<img src="../../static/images/site-colors-2.png" style="width: 47%; position: absolute; right: 0px;">
+				        <img src="../../static/images/site-colors-3.png" style="width: 47%; position: absolute; right: 0px; top: 195px;">
+				        <img src="../../static/images/site-colors-4.png" style="width: 50%; position: absolute; left: 0px; top: 300px;">
+						<p style="font-size: 14px; position: absolute; top: 350px; right: 100px;">Some of the various colorways I tried.</p>
+				    </div>
+					<hr style="position: relative; top: 670px;">
+					<p style="position: relative; top: 670px;"><b>After that the main site settled on the color
+					pallete you see now and a background image I found when browsing for
+					pixel art forest backgrounds that matches it pretty well in my opinion.</b></p>
+					<p style="position: relative; top: 670px;"><b>After that it was time to start decorating
+					the site with various javascript functions, stamps, and blog posts!</b></p>
+					<hr style="position: relative; top: 670px;">
+					<p style="position: relative; top: 710px; height: 150px;"><b>If you made it this far I wanna thank you
+					for reading this silly lil post about how I started this project. I think I'll also start
+					putting together some tutorials to document how I migrated from a static site that services
+					like Neocities and Nekoweb can host, to a self-hosted dynamic site that incorporates Python,
+					Jinja2, and SQL.</b></p>
+					<p style="position: relative; top: 710px; height: 300px;">
+					P.S. If you wanna replicate my code or just take a look at it to judge how bad I am at
+					programming. You can click that big blue Github button (or, go <a href="https://github.com/bunTeeth"
+					style="color: #007BA7;">here</a>)</p>
+				</div>
 			</div>
 			<div class="leftsidebar">
 			</div>
@@ -52,12 +110,12 @@
 			</div>
 		</div>
 	</main>
-  
+
 	<footer>
                 {% for wb in web_buttons %}
                 <img src="../../static/images/{{wb.filename}}" style="display:inline-block;">
                 {% endfor%}
   	</footer>
-  
+
   </body>
 </html>
