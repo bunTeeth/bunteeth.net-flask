@@ -303,9 +303,9 @@ footer img {
 .about-list-left {
   position: absolute;
   text-align: center;
-  bottom: 77.5%;
+  bottom: 67.5%;
   left: 20%;
-  width: 20%;
+  width: 30%;
 }
 
 .about-list-left ul {
@@ -322,7 +322,7 @@ footer img {
   position: absolute;
   text-align: center;
   right: 10%;
-  bottom: 77.5%;
+  bottom: 67.5%;
   width: 30%;
 }
 
@@ -340,7 +340,7 @@ footer img {
   position: absolute;
   text-align: center;
   width: 100%;
-  top: 50%; /* CHANGE THIS WHEN ADDING 2 ABOUT ME LIST */
+  top: 70%; /* CHANGE THIS WHEN ADDING 2 ABOUT ME LIST */
 }
 
 .binder-pages {
