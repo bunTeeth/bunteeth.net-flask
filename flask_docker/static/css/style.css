@@ -295,10 +295,6 @@ footer img {
   overflow: scroll;
 }
 
-.content-container img {
-  border: 5px solid #4a4318;
-}
-
 .messages {
   display: flex;
   flex-direction: column-reverse;

@@ -100,7 +100,7 @@
 						<li><a href="/about">---About Me !---</a></li>
 						{% for post in posts %}
 						<li><a href="/blog/{{post.title}}">---{{post.title}}---
-							<p style="font-size: 10px; color: #007BA7">Posted on: 
+							<p style="font-size: 10px; color: #007BA7">Posted on:
 							{{post.date_posted.day}}/
 							{{post.date_posted.month}}/{{post.date_posted.year}}
 							</p></a></li>
@@ -149,7 +149,7 @@
 			</div>
 		</div>
     </main>
-    
+
     <footer>
 		{% for wb in web_buttons %}
 		<img src="../static/images/{{wb.filename}}" style="display:inline-block;">
