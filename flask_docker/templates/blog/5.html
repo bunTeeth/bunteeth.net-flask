@@ -63,7 +63,7 @@
 					<p style="position: relative; text-align: left; color: grey;"># This line will set our app's secret key. Though I personlly have not encountered a
 					need for this yet, It's still a best practice to add this for security, so make sure it's super duper secret.
 					<p style="position: relative; text-align: left; color: violet;">app<span style="color: white;">.config</span><span style="color: white;">[</span>
-					'SECRET_KEY'<span style="color: white;">] = </span><span style="color: #007BA7;">bunnies r the bestest animalz ever !!11!!!!!!</span>
+					'SECRET_KEY'<span style="color: white;">] = </span><span style="color: #007BA7;">"bunnies r the bestest animalz ever !!11!!!!!!"</span>
 					<p style="position: relative; text-align: left; color: grey;"># Now we can start defining what will happen when someone browses to different
 					areas of our site like /index or /about</p>
 					<p style="position: relative; text-align: left; color: violet;"><span style="color: orangered;">@</span>app
@@ -71,14 +71,14 @@
 					<span style="color: grey;"># This will be where we serve our index file</span>
 					<p style="position: relative; text-align: left; color: white;"><span style="color: orangered;">def </span><span style="color: #007BA7;">index</span>():
 					<span style="color: grey;"># make sure you tab in once for anything under this. Be consistent with your spaces too.</span>
-					<p style="position: relative; text-align: left; left: 20px; color: orangered;">retrurn
+					<p style="position: relative; text-align: left; left: 20px; color: orangered;">return
 					<span style="color: #007BA7;">render_template</span><span style="color: white;">(</span><span style="color: green;">'index.html'</span><span style="color: white;">)</span></p>
 					<p style="position: relative; text-align: left; color: grey;"># This if statement basically just lets us run our app only from this script & not as an import</p>
-					<p style="position: relative; text-align: left; color: white;"><span style="color: orangered;">if</span><span style="color: #007BA7;">__name__</span>
-					== <span style="color: #007BA7;">__main__</span>:
-					<p style="position: relative; text-align: left; left: 20px; color: violet;">app<span style="color: white;">.run(</span>
-					host<span style="color: white;">=</span><span style="color: orangered;">0.0.0.0</span>,
-					port<span style="color: white;">=</span><span style="color: orangered;">5000</span>)<span style="color: grey;"># This lets the app run on our computer's
+					<p style="position: relative; text-align: left; color: white;"><span style="color: orangered;">if </span><span style="color: #007BA7;">__name__</span>
+					== <span style="color: #007BA7;">'__main__'</span>:
+					<p style="position: relative; text-align: left; color: grey;"># Make sure you tab in this line as well.</p>
+					<p style="position: relative; text-align: left; left: 20px; color: violet;">app<span style="color: white;">.run(</span>host<span style="color: white;">=</span><span style="color: orangered;">"0.0.0.0"</span>,
+					port<span style="color: white;">=</span><span style="color: orangered;">5000</span>)<span style="color: grey;"> # This lets the app run on our computer's
 					main network interface instead of just our loopback (localhost) interface. This is important if we plan on hosting our site.</span></p>
 				</div>
 				<hr style="position: relative; top: 200px;">
