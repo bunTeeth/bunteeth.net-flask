@@ -7,9 +7,9 @@
     <link rel="icon" type="image/png" href="/images/favicon2.png"">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
-  
+
   <body>
-  
+
   <header>
     <!--navigation menu -->
       <nav>
@@ -17,11 +17,13 @@
             <a href="/"><img id="home-button" src="../static/images/home.png" style="display: inline-block;"></a>
             <a href="/about.html"><img id="about-button" src="../static/images/about.png" style="display: inline-block;"></a>
 			<a href="https://theatre.bunteeth.net"><img id="theatre-button" src="../static/images/theatre.png" style="display:inline-block;"></a>
-			<a href="https://github.com/bunTeeth"><img id="github-button" src="../static/images/github2.png" style="display:inline-block;"></a>
-            
+			<a href="https://github.com/bunTeeth"><img id="github-button" src="../static/images/github2.png" style="display:inline-block;"></a
+			<a href="/blog/Tutorial:%20Flask%20Basics"><img id="tutorial-button" src="{{ url_for('static', filename='images/tutorials2.png') }}" style="display:inline-block;"></a>
+			<a href="/"><img id="shrines-button" src="{{ url_for('static', filename='images/shrines.png') }}" style="display:inline-block;"></a>
+
       </nav>
   </header>
-  
+
 	<main>
 		<div class="body-container">
 			<div class="content-container-solo">
@@ -43,11 +45,11 @@
 			</div>
 		</div>
 	</main>
-  
+
 	<footeer>
 		<img src="../static/images/drpepper.gif" style="display:inline-block;">
 		<img src="../static/images/bunbrowser.gif" style="display:inline-block;">
   </footer>
-  
+
   </body>
 </html>

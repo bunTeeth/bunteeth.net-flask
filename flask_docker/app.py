@@ -4,7 +4,7 @@
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, send_from_directory
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
@@ -88,6 +88,13 @@ class WebButton(db.Model): # Idk how 2 store images so itll just take in the nam
 
 	def __repr__(self):
 		return f"File: {self.filename}"
+
+# class Upload(db.Model):                Useful for later maybe?
+#    __tablename__ = 'uploaded_files'
+#
+#    id = db.Column(db.Integer, primary_key=True)
+#    filename = db.Column(db.String(100), unique=False, nullable=False)
+#    file_data = db.Column
 
 # Define App Routes
 @app.route('/') # Serve the home page and take in all database models
@@ -212,6 +219,10 @@ def message():
 		return redirect('/')
 	else:
 		return redirect('/')
+
+@app.route('/downloads/<filename>')
+def download_file(filename):
+    return send_from_directory('uploads', filename)
 
 
 # Initialize The Database & The App

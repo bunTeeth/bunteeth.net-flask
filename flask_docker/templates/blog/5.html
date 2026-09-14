@@ -12,9 +12,11 @@
 	 <nav>
         <!-- TODO -->
             <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
-            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;">
+            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
             <a href="https://theatre.bunteeth.net"><img id="theatre-button" src="{{ url_for('static', filename='images/theatre.png') }}" style="display: inline-block;"></a>
             <a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display: inline-block;"></a>
+            <a href="/blog/Tutorial:%20Flask%20Basics"><img id="tutorial-button" src="{{ url_for('static', filename='images/tutorials2.png') }}" style="display:inline-block;"></a>
+            <a href="/"><img id="shrines-button" src="{{ url_for('static', filename='images/shrines.png') }}" style="display:inline-block;"></a>
 
 	</nav>
 
@@ -34,7 +36,7 @@
 				anything too crazy technical or in-depth, but I'll still try my best to get things across</p>
 				<p style="position: relative; top: 100px;">So to start with we have to install python, python comes pre-installed on Linux, but for Windows and MacOS we
 				have to install it from either their <a href="https://www.pythonguis.com/installation/install-python-windows/#how-to-install-python-on-windows", style="color: #007BA7;">
-				official website</a> or from a code editor
+				official website</a>. Then we'll need a code editor
 				like<a href="https://code.visualstudio.com/download?_exp_download=fb315fc982" style="color: #007BA7;">
 				Visual Studio Code</a> or <a href="https://www.jetbrains.com/pycharm/download/?section=windows" style="color: #007BA7;">PyCharm</a>.
 				Then we have to set up the directory for our project. It's actually pretty simple and all we really need to start with is a shrimple structure like this:</p>
@@ -48,42 +50,45 @@
 					<p style="position: relative; text-align: left;">| ------ templates</p>
 				    <p style="position: relative; text-align: left;">| - index.html</p>
 					<p style="position: relative; text-align: left;">| ------ app.py</p>
+					<p style="position: relative; text-align: left;">| ------ requirements.txt</p>
+					<p style="position: relative; text-align: left; right: 41%; font-size: 16px;"><b>
+					Alternatively, you can download this sample directory of empty files to follow along with this tutorial
+					series <a style="color: #007BA7;" href="/downloads/website_tutorial_directory.zip">here</a>.</b></p>
 				</div>
 				<hr style="position: relative; top: 120px;">
 				<p style="position: relative; top: 150px;">Now that we have our directory set up with our starter files we can get to work on building our app!</p>
 				<p style="position: relative; top: 150px;">To start off, we're going to open <span style="color: #007BA7;">app.py</span> in our text editor of choice
-				and copy the following lines into it.</p>
-				<div style="position: relative; top: 150px; left: 10%; width: 80%; border: 5px solid #4a4318; height: 300px; overflow-y: scroll; overflow-x: hidden; background: #6e6e6e;
-				    background: linear-gradient(180deg, rgba(110, 110, 110, 1) 0%, rgba(77, 77, 77, 1) 25%, rgba(43, 43, 43, 1) 75%);">
-				    <p style="position: relative; text-align: left; color: black;"># This is called a shebang, it tells the os where the binary to execute this script it!</p>
-				    <p style="position: relative; text-align: left;">#!/usr/bin/env python3</p>
-					<p style="position: relative; text-align: left; color: black;"># This line imports the 2 functions we will need from the flask module that we'll need 2
+				and type the following lines into it.</p>
+				<div class="code-container" style="top: 150px;">
+				    <p style="color: black;"># This is called a shebang, it tells the os where the binary to execute this script it!</p>
+				    <p>#!/usr/bin/env python3</p>
+					<p style="color: black;"># This line imports the 2 functions we will need from the flask package that we'll need 2
 					to start with.
 					Flask is obviously how we will be building our site and render_template is used to serve our html files to our clients' browsers.
 					later on we can import functions like request or redirect to handle forms or redirect to other pages from our python code.</p>
-					<p style="position: relative; text-align: left; color: #007BA7;"><span style="color: orangered;">from</span> flask
+					<p style="color: #007BA7;"><span style="color: orangered;">from</span> flask
 					<span style="color: orangered;">import</span> Flask, render_template</p>
-					<p style="position: relative; text-align: left; color: black;"># Here we can set a variable we can use for initializing our app.</p>
-					<p style="position: relative; text-align: left; color: violet;">app <span style="color: white;">=</span>
+					<p style="color: black;"># Here we can set a variable we can use for initializing our app.</p>
+					<p style="color: violet;">app <span style="color: white;">=</span>
 					<span style="color: #007BA7;">Flask(__name__)</span></p>
-					<p style="position: relative; text-align: left; color: black;"># This line will set our app's secret key. Though I personlly have not encountered a
+					<p style="color: black;"># This line will set our app's secret key. Though I personlly have not encountered a
 					need for this yet, It's still a best practice to add this for security, so make sure it's super duper secret.
-					<p style="position: relative; text-align: left; color: violet;">app<span style="color: white;">.config</span><span style="color: white;">[</span>
+					<p style="color: violet;">app<span style="color: white;">.config</span><span style="color: white;">[</span>
 					'SECRET_KEY'<span style="color: white;">] = </span><span style="color: #007BA7;">"bunnies r the bestest animalz ever !!11!!!!!!"</span>
-					<p style="position: relative; text-align: left; color: black;"># Now we can start defining what will happen when someone browses to different
+					<p style="color: black;"># Now we can start defining what will happen when someone browses to different
 					areas of our site like /index or /about</p>
-					<p style="position: relative; text-align: left; color: violet;"><span style="color: orangered;">@</span>app
+					<p style="color: violet;"><span style="color: orangered;">@</span>app
 					<span style="color: white;">.route</span><span style="color: white;">(</span><span style="color: #007BA7;">'/'</span><span style="color: white;">)</span>
 					<span style="color: black;"># This will be where we serve our index file</span>
-					<p style="position: relative; text-align: left; color: white;"><span style="color: orangered;">def </span><span style="color: #007BA7;">index</span>():
+					<p style="color: white;"><span style="color: orangered;">def </span><span style="color: #007BA7;">index</span>():
 					<span style="color: black;"># make sure you tab in once for anything under this. Be consistent with your spaces too.</span>
-					<p style="position: relative; text-align: left; left: 20px; color: orangered;">return
+					<p style="left: 20px; color: orangered;">return
 					<span style="color: #007BA7;">render_template</span><span style="color: white;">(</span><span style="color: lime;">'index.html'</span><span style="color: white;">)</span></p>
-					<p style="position: relative; text-align: left; color: black;"># This if statement basically just lets us run our app only from this script & not as an import</p>
-					<p style="position: relative; text-align: left; color: white;"><span style="color: orangered;">if </span><span style="color: #007BA7;">__name__</span>
+					<p style="color: black;"># This if statement basically just lets us run our app only from this script & not as an import</p>
+					<p style="color: white;"><span style="color: orangered;">if </span><span style="color: #007BA7;">__name__</span>
 					== <span style="color: #007BA7;">'__main__'</span>:
-					<p style="position: relative; text-align: left; color: black;"># Make sure you tab in this line as well.</p>
-					<p style="position: relative; text-align: left; left: 20px; color: violet;">app<span style="color: white;">.run(</span>host<span style="color: white;">=</span><span style="color: orangered;">"0.0.0.0"</span>,
+					<p style="color: black;"># Make sure you tab in this line as well.</p>
+					<p style="left: 20px; color: violet;">app<span style="color: white;">.run(</span>host<span style="color: white;">=</span><span style="color: orangered;">"0.0.0.0"</span>,
 					port<span style="color: white;">=</span><span style="color: orangered;">5000</span>)<span style="color: black;"> # This lets the app run on our computer's
 					main network interface instead of just our loopback (localhost) interface. This is important if we plan on hosting our site.</span></p>
 				</div>
@@ -91,25 +96,36 @@
 				<p style="position: relative; top: 200px;">It's as shrimple as that! We now have the backbone of our web app, but don't run it juuuusssst yet because we told
 				our app to serve <span style="color: #007BA7;">index.html</span> but right meow that's just an empty file :c</p>
 				<p style="position: relative; top: 200px;">So let's fix that! Let's now open it in our text editor of choice and add the following code to it:</p>
-				<div style="position: relative; top: 200px; left: 10%; width: 80%; border: 5px solid #4a4318; height: 300px; overflow-y: scroll; overflow-x: hidden; background: #6e6e6e;
-				    background: linear-gradient(180deg, rgba(110, 110, 110, 1) 0%, rgba(77, 77, 77, 1) 25%, rgba(43, 43, 43, 1) 75%); *">
-				    <p style="position: relative; text-align: left; color: lime;"><span style="color: white;"><</span>html<span style="color: white;">></span></p>
-					<p style="position: relative; text-align: left; left: 20px; color: lime;"><span style="color: white;"><</span>body<span style="color: white;">></span></p>
-					<p style="position: relative; text-align: left; left: 40px; color: lime;"><span style="color: white;"><</span>main<span style="color: white;">></span></p>
-					<p style="position: relative; text-align: left; left: 60px;color: lime;"><span style="color: white;"><</span>h1<span style="color: white;">>
+				<div class="code-container" style="top: 200px;">
+				    <p style="color: lime;"><span style="color: white;"><</span>html<span style="color: white;">></span></p>
+					<p style="left: 20px; color: lime;"><span style="color: white;"><</span>body<span style="color: white;">></span></p>
+					<p style="left: 40px; color: lime;"><span style="color: white;"><</span>main<span style="color: white;">></span></p>
+					<p style="left: 60px;color: lime;"><span style="color: white;"><</span>h1<span style="color: white;">>
 					Hewwo, World <</span><span style="color: lime;">/h1</span><span style=" color: white;">></span></p>
-					<p style="position: relative; text-align: left; left: 40px; color: lime;"><span style="color: white;"><</span>/main<span style="color: white;">></span></p>
-					<p style="position: relative; text-align: left; left: 20px; color: lime;"><span style="color: white;"><</span>/body<span style="color: white;">></span></p>
-					<p style="position: relative; text-align: left; color: lime;"><span style="color: white;"><</span>/html<span style="color: white;">></span></p>
+					<p style="left: 40px; color: lime;"><span style="color: white;"><</span>/main<span style="color: white;">></span></p>
+					<p style="left: 20px; color: lime;"><span style="color: white;"><</span>/body<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;"><</span>/html<span style="color: white;">></span></p>
 				</div>
 				<hr style="position: relative; top: 250px;">
-				<p style="position: relative; top: 250px;">Awesome sauce !!! Now we should have a functioning web app that serves us a static html page.
-				Finally, we can run our app with either <span style="color: #007BA7;">python3 app.py</span> on Linux or with an IDE like Visual Studio Code, Zed,
-				or PyCharm and navigate to <span style="color: #007BA7;">http://localhost:5000</span> to access our site. If we did everything correctly we should see
+				<p style="position: relative; top: 250px;">Finally, we need to install Flask, we can technically do this by just running the command
+				<span style="color: #007BA7;">pip install flask</span>, but since we're gonna be virtualizing our website with Docker in my next tutorial, we
+				should write a file to our project folder named <span style="color: #007BA7;">requirements.txt</span> that will list any packages our app will need.
+				It's actually super duper simple because all we need to do is list the names of the packages we need to install.</p>
+				<div class="code-container" style="top: 250px;">
+				    <p>flask</p>
+				</div>
+				<p style="position: relative; top: 250px; font-size: 14px;">Look at all that empty space XD</p>
+				<hr style="position: relative; top: 290px;">
+				<p style="position: relative; top: 290px;">Awesome sauce !!! Now we should have a functioning web app that serves us a static html page.
+				To finish off this part
+				of the tutorial we need to install flask by running <span style="color: #007BA7;">pip install -r requirements.txt</span> in our terminal and then
+			    we can run our app with either <span style="color: #007BA7;">python3 app.py</span> in the terminal (Command Prompt on Windows and Terminal on Mac)
+				and navigate to <span style="color: #007BA7;">http://localhost:5000</span> to access our site. If we did everything correctly we should see
 				a blank white page with our header text at the top.</p>
-				<p style="position: relative; top: 250px; height: 200px;">Thank you for reading to the end!!!
+				<p style="position: relative; top: 290px; height: 200px;">Thank you for reading to the end!!!
 				Now you know the very basics of displaying static web pages with flask.
-				See you in the next tutorial where I'll cover how I implemented SQLAlchemy to create a database for my website, so stay tuned for that!</p>
+				You can view part 2 of the tutorial, where I cover how to create a lightweight container for our website with Docker,
+				<a href="/blog/Tutorial:%20Site%20Virtualization%20with%20Docker" style="color: #007BA7;">here</a> !</p>
 			</div>
 			<div class="leftsidebar">
 			</div>

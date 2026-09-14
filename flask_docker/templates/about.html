@@ -7,22 +7,22 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon2.png') }}">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all">
   </head>
-  
+
   <body>
-  
+
   <header>
      <!--navigation menu -->
       <nav>
-        <!-- TODO -->
-            <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
-            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
+        <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
+        <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
 	    <a href="https://theatre.bunteeth.net"><img id="theatre-button" src="{{ url_for('static', filename='images/theatre.png') }}" style="display:inline-block;"></a>
 	    <a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display:inline-block;"></a>
-			<!--<hr>-->
-            
+		<a href="/blog/Tutorial:%20Flask%20Basics"><img id="tutorial-button" src="{{ url_for('static', filename='images/tutorials2.png') }}" style="display:inline-block;"></a>
+		<a href="/"><img id="shrines-button" src="{{ url_for('static', filename='images/shrines.png') }}" style="display:inline-block;"></a>
+
       </nav>
   </header>
-  
+
   <main>
 			<div class="body-container">
 			<!--TODO-->
@@ -76,12 +76,12 @@
 		</div>
 
   </main>
-  
+
   <footer>
         {% for wb in web_buttons %}
         <img src="../static/images/{{wb.filename}}" style="display:inline-block;">
   	{% endfor%}
   </footer>
-  
+
   </body>
 </html>

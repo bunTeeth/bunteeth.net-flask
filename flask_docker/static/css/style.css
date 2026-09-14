@@ -343,6 +343,25 @@ footer img {
   top: 70%; /* CHANGE THIS WHEN ADDING 2 ABOUT ME LIST */
 }
 
+.code-container {
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px;
+  left: 10%;
+  width: 80%;
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border: 5px solid #4a4318;
+  background: #6e6e6e;
+  background: linear-gradient(180deg, rgba(110, 110, 110, 1) 0%, rgba(77, 77, 77, 1) 25%, rgba(43, 43, 43, 1) 75%);
+}
+
+.code-container p {
+  position: relative;
+  text-align: left;
+}
+
 .binder-pages {
   position: absolute;
   width: 70%;

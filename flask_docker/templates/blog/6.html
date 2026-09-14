@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <title>bunTeeth.net | Flask Basics</title>
+    <title>bunTeeth.net | Website Dockerization</title>
     <link rel="icon" type="image/png" href="../../static/images/favicon2.png">
     <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all">
 	<script src="../../static/js/script.js"></script>
@@ -12,9 +12,11 @@
 	 <nav>
         <!-- TODO -->
             <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
-            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;">
+            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
             <a href="https://theatre.bunteeth.net"><img id="theatre-button" src="{{ url_for('static', filename='images/theatre.png') }}" style="display: inline-block;"></a>
-            <a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display: inline-block;"></a>
+            <a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display: inline-block;"></a
+            <a href="/blog/Tutorial:%20Flask%20Basics"><img id="tutorial-button" src="{{ url_for('static', filename='images/tutorials2.png') }}" style="display:inline-block;"></a>
+            <a href="/"><img id="shrines-button" src="{{ url_for('static', filename='images/shrines.png') }}" style="display:inline-block;"></a>
 
 	</nav>
 
@@ -28,7 +30,77 @@
 			<div class="content-container">
 				<h1>How I Made This Site !</h1>
 				<h2>So You Can Too.... If You Want To</h2>
-				<h3>Part 2: </h3>
+				<h3>Part 2: Virtualization with Docker</h3>
+				<hr>
+				<p>This is a follow-up tutorial to my previous blog post covering the basics of setting up a Flask web server, so this tutorial will assume you
+				have followed that one or already have your own Flask app you wanna virtualize (though if you already had one you probably don't need to read this).</p>
+				<p style="position: relative; top: 50px;">This will be a relatively simple process as all we have to do is create a
+				Dockerfile and a Docker Compose file to build an image and set up an easy way to create and shut down the container when needed.</p>
+				<p style="position: relative; top: 100px;">So let's start by installing Docker. You can install it
+				from<a href="https://docs.docker.com/desktop/setup/install/windows-install/" style="color: #007BA7;"> here.</a> for eithe Linux, Windows, or Mac.
+				Once you have that you can navigate back to your project folder and create a file simply named <span style="color: #007BA7;">Dockerfile</span>,
+				where you can put in the folliwng lines:</p>
+				<div class="code-container" style="top: 100px;">
+				    <p style="color: black;"># This first line is the image that ours will be based on, since we're using Flask our image should be based
+					on the official python image, I'm personally using version 3.12 but you can use any. However it's advised you don't use the latest version
+					as it has the chance to make our image not function properly.</p>
+				    <p><span style="color: orangered;">FROM</span> <span style="color: violet;">python:3.12</span></p>
+					<p style="color: black;"># This next line tells our image which directory our app is stored, so let's go ahead and call it /app.
+					However, it's really up to you what you wanna call it ^-^.</p>
+					<p style="color: black;"># P.S. It looks cleaner if we have an extra blank line in between each of our lines of code.</p>
+					<p style="color: orangered;">WORKDIR <span style="color: violet;">/app</span></p>
+					<p style="color: black;"># Now we want to copy our requirements.txt file over to our container's /app folder (represented
+					by a period, which stands for "current directory") from our project folder.</p>
+					<p style="color: orangered;">COPY <span style="color: violet;">requirements.txt .</span></p>
+					<p style="color: black;"># Now we have to tell our container to use pip, which is python's module installer so that the import lines in
+					our app.py file will work.</p>
+					<p style="color: orangered;">RUN <span style="color: violet;">pip install -r requirements.txt</span></p>
+					<p style="color: black;"># It's time to copy our whole project folder over to the /app folder. Just like in the previous COPY line
+					we will represent our current directory (our project folder) and the container's current directory (the /app folder) with a period, so it will look
+					a bit silly with just two periods after the COPY.</p>
+					<p style="color: orangered;">COPY <span style="color: violet;">. .</span></p>
+					<p style="color: black;"># The following line is optional for now as nothing in our container needs access to our app's port right now since
+					our app is the only image we're running, but it will be necessary when we add our SQL database to connect to our app. But what this line does is it
+					tells our app container to expose port 5000 so that any other containers in our project's Docker network can connect to our app.</p>
+					<p style="color: orangered;">EXPOSE <span style="color: violet;">5000</span></p>
+					<p style="color: black;"># Lastly, we have to tell our container to run our app, without this, the container will start, but our app won't run
+					so we won't be able to see our site.</p>
+					<p style="color: orangered;">CMD <span style="color: violet;">["python", "app.py"]</span></p>
+				</div>
+				<hr style="position: relative; top: 150px;">
+				<p style="position: relative; top: 150px;">Now we're able to create an application container that's isolated from the rest of our computer.
+				We can test that our Dockerfile works by running the command <span style="color: #007BA7;">docker build -t website:Dockerfile</span> and then
+				<span style="color: #007BA7;">docker run website</span> in our terminal. Alternatively, we can write a Docker Compose file named
+				<span style="color: #007BA7;">docker-compose.yml</span> to run our container. This way will be super useful when we start adding other containers that
+				we'll want to run at simultaneously with our website container. So let's do that. In our <span style="color: #007BA7;">docker-compose.yml</span> file,
+				type in the following:</p>
+				<div class="code-container" style="top: 150px;">
+				    <p style="color: black;"># This line lists our containers, we need it even though we just have one.</p>
+				    <p style="color: orangered;">services:</p>
+					<p style="color: black;"># Tab in and write the line below. This line will define our container.</p>
+					<p style="color: orangered; left: 20px;">web:</p>
+					<p style="color: black; left: 40px;"># Tab in again and write each of the following lines:</p>
+					<p style="color: orangered; left: 40px;">build: <span style="color: violet;">.</span> <span style="color: black;"># This line tells our container
+					and image from a Dockerfile in the specified location,</span></p>
+					<p style="color: black; left: 40px; bottom: 10px;"># which is the current directory (once again represented by a period).</p>
+					<p style="color: orangered; left: 40px;">container_name: <span style="color: violet;">flask_app</span> <span style="color: black;">#
+					This line gives our container a name so that we can identify it easily</span></p>
+					<p style="color: black; left: 40px; bottom: 10px;"># if we need to check it's logs or something.</p>
+					<p style="color: orangered; left: 40px;">ports: <span style="color: black;"># It's time to define our ports, so make sure you tab in and
+					add the following line.</span></p>
+					<p style="color: yellow; left: 60px;">- <span style="color: white;">"5000:5000"</span> <span style="color: black;"># This line
+					specifies port 5000 as both the host port (the one before the colon)</span></p>
+					<p style="color: black; left: 60px; bottom: 10px;"># and the container port (the one after the colon) to serve the app on.</p>
+				</div>
+				<hr style="position: relative; top: 200px;">
+				<p style="position: relative; top: 200px;">Supa fwickin' awesum sauce !! These two files let us build and run our app in an isolated environment via
+				Docker. We can test that everything is functional by running the command <span style="color: #007BA7;">docker compose up --build -d</span> from the terminal.
+				It'll take a few seconds for the image to be built and for the container to be created, but once it's up and running we should be able to navigate back
+				to <span style="color: #007BA7;">http://localhost:5000</span> and see our website. If we can't we can run it back without the <span style="color: #007BA7;">
+				-d</span> and once the container is up an running we'll be ablte to see the logs to find out what's going on,
+				and simply type d to exit out of the logs if we wanna turn the container off.</p>
+				<p style="position: relative; top: 200px; height: 200px;">Well, that's it for this section of the website tutorial. If you made this this far, thank you
+				for reading!! The next part of this tutorial will be soon!</p>
 			</div>
 			<div class="leftsidebar">
 			</div>
