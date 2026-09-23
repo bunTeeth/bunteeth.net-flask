@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>bunTeeth.net | My Homelab</title>
+    <link rel="icon" type="image/png" href="../../static/images/favicon2.png">
+    <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all">
+	<script src="../../static/js/script.js"></script>
+
+  </head>
+	 <nav>
+        <!-- TODO -->
+            <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
+            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
+            <a href="https://theatre.bunteeth.net"><img id="theatre-button" src="{{ url_for('static', filename='images/theatre.png') }}" style="display: inline-block;"></a>
+            <a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display: inline-block;"></a>
+            <a href="/blog/Tutorial:%20Flask%20Basics"><img id="tutorial-button" src="{{ url_for('static', filename='images/tutorials2.png') }}" style="display:inline-block;"></a>
+            <a href="/"><img id="shrines-button" src="{{ url_for('static', filename='images/shrines.png') }}" style="display:inline-block;"></a>
+
+	</nav>
+
+  <body>
+
+  <header>
+  </header>
+
+	<main>
+		<div class="body-container">
+			<div class="content-container">
+			    <h1>How I Made This Site !</h1>
+				<h2>So You Can Too.... If You Want To</h2>
+				<h3>Part 3: Creating a Database with SQLAlchemy</h3>
+				<hr>
+				<p>a</p>
+				<p style="position: relative; top: 50px;">a</p>
+				<p style="position: relative; top: 100px;">a</p>
+				<div class="code-container" style="top: 100px;">
+				    <p>WIP</p>
+				</div>
+			</div>
+			<div class="leftsidebar">
+			</div>
+			<div class="rightsidebar">
+				<h2><b>Blog:</b></h2>
+                                <div class="blog-current">
+                                        <ul>
+                                                <li><b>You are here:</b></li>
+                                                <li><a href="/blog/{{current}}">---{{current}}---</a></li>
+                                        </ul>
+                                </div>
+                                <div class="blog-more">
+                                        <ul>
+                                                <li><b>Check out these posts:</b></li>
+                                                <li><a href="/about">---About Me !---</a></li>
+                                                {% for post in posts if post.title != current%}
+                                                <li><a href="/blog/{{post.title}}">---{{post.title}}---
+                                                        <p style="font-size: 10px; color: #007BA7">Posted on:
+                                                        {{post.date_posted.day}}/
+                                                        {{post.date_posted.month}}/{{post.date_posted.year}}
+                                                        </p></a></li>
+                                                {% endfor%}
+			</div>
+		</div>
+	</main>
+
+	<footer>
+                {% for wb in web_buttons %}
+                <img src="../../static/images/{{wb.filename}}" style="display:inline-block;">
+                {% endfor%}
+  	</footer>
+
+  </body>
+</html>
