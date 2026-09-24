@@ -111,6 +111,12 @@ def about():
 	web_buttons = WebButton.query.all()
 	return render_template('about.html', posts=posts, web_buttons=web_buttons)
 
+@app.route('/temple') # Serve the home page for the shrines section
+def temple():
+    posts = BlogPost.query.all()
+    web_buttons = WebButton.query.all()
+    return render_template('shrines_home.html', posts=posts, web_buttons=web_buttons)
+
 @app.route('/blog/<title>') # Serve specific blog post based on the title of the post
 def get_post(title):
 	post = db.one_or_404(db.select(BlogPost).filter_by(title=title)) # Get the post by its title

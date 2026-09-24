@@ -3,41 +3,31 @@
   <head>
     <meta charset="UTF-8">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <title>bunTeeth.net | My Homelab</title>
-    <link rel="icon" type="image/png" href="../../static/images/favicon2.png">
-    <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all">
-	<script src="../../static/js/script.js"></script>
+    <title>bunTeeth.net | My Binder</title>
+    <link rel="icon" type="image/png" href="../static/images/favicon2.png">
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all">
+	<script src="../static/js/script.js"></script>
 
   </head>
-	 <nav>
-        <!-- TODO -->
-            <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
-            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
-            <a href="https://theatre.bunteeth.net"><img id="theatre-button" src="{{ url_for('static', filename='images/theatre.png') }}" style="display: inline-block;"></a>
-            <a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display: inline-block;"></a>
-            <a href="/blog/Tutorial:%20Flask%20Basics"><img id="tutorial-button" src="{{ url_for('static', filename='images/tutorials2.png') }}" style="display:inline-block;"></a>
-            <a href="/temple"><img id="shrines-button" src="{{ url_for('static', filename='images/shrines.png') }}" style="display:inline-block;"></a>
-
-	</nav>
 
   <body>
 
   <header>
+	<nav>
+            <a href="/"><img id="home-button" src="{{ url_for('static', filename='images/home.png') }}" style="display: inline-block;"></a>
+            <a href="/about"><img id="about-button" src="{{ url_for('static', filename='images/about.png') }}" style="display: inline-block;"></a>
+            <a href="https://theatre.bunteeth.net"><img id="theatre-button" src="{{ url_for('static', filename='images/theatre.png') }}" style="display:inline-block;"></a>
+            <a href="https://github.com/bunTeeth"><img id="github-button" src="{{ url_for('static', filename='images/github2.png') }}" style="display:inline-block;"></a>
+            <a href="/blog/Tutorial:%20Flask%20Basics"><img id="tutorial-button" src="{{ url_for('static', filename='images/tutorials2.png') }}" style="display:inline-block;"></a>
+            <a href="/temple"><img id="shrines-button" src="{{ url_for('static', filename='images/shrines.png') }}" style="display:inline-block;"></a>
+      </nav>
   </header>
 
 	<main>
 		<div class="body-container">
 			<div class="content-container">
-			    <h1>How I Made This Site !</h1>
-				<h2>So You Can Too.... If You Want To</h2>
-				<h3>Part 3: Creating a Database with SQLAlchemy</h3>
-				<hr>
-				<p>a</p>
-				<p style="position: relative; top: 50px;">a</p>
-				<p style="position: relative; top: 100px;">a</p>
-				<div class="code-container" style="top: 100px;">
-				    <p>WIP</p>
-				</div>
+			    <h1>WIP</h1>
+				<h2>(im not even that sure what a shrine is in the indie web context....)</h2>
 			</div>
 			<div class="leftsidebar">
 			</div>
@@ -66,7 +56,7 @@
 
 	<footer>
                 {% for wb in web_buttons %}
-                <img src="../../static/images/{{wb.filename}}" style="display:inline-block;">
+                <img src="../static/images/{{wb.filename}}" style="display:inline-block;">
                 {% endfor%}
   	</footer>
 
