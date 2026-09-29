@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <title>bunTeeth.net | My Homelab</title>
+    <title>bunTeeth.net | SQLAlchemy in Flask</title>
     <link rel="icon" type="image/png" href="../../static/images/favicon2.png">
     <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all">
 	<script src="../../static/js/script.js"></script>
@@ -32,12 +32,119 @@
 				<h2>So You Can Too.... If You Want To</h2>
 				<h3>Part 3: Creating a Database with SQLAlchemy</h3>
 				<hr>
-				<p>a</p>
-				<p style="position: relative; top: 50px;">a</p>
-				<p style="position: relative; top: 100px;">a</p>
+				<p>So this will be the harder of the tutorials as we will have to go back and add stuff to both our python file and our docker compose file.
+				    The reason we want to do this is because it solves one of the biggest problems (in my opinion) with static websites, which is that JavaScript
+				    is only capable of storing data locally within the browser, meaning once you refresh the page or move to a new one, anything JavaScript was doing
+				    is reset. However, with the help of a SQL database we can store data in our backend and use it across as many pages as we want for all users to see !
+				    For example, we can make a guestbook that we control on our own hardware, without having to use a third party provider like SmartGB or Atabook
+				    (No shade to people use them, but I think self-hosting is awesome sauce ^-^).</p>
+				<p style="position: relative; top: 50px;">With all that being said, let's not waste any time and get straight to adding our database !</p>
+				<p style="position: relative; top: 100px;">To start with let's set up our PostgreSQL service and an optional Adminer service in our docker compose file. Go
+				ahead and follow along with the code in the box below.</p>
 				<div class="code-container" style="top: 100px;">
-				    <p>WIP</p>
+                    <p style="color: black;"># This is our app image, if you followed along with the previous tutorial about virtualizing our site, you can go ahead
+                        and skip most of these lines aside from the two additional lines at the end (environment & depends_on).</p>
+                    <p style="color: orangered;">services:</p>
+                    <p style="color: black;"># Tab in and write the line below. This line will define our container.</p>
+                    <p style="color: orangered; left: 20px;">web:</p>
+                    <p style="color: black; left: 40px;"># Tab in again and write each of the following lines:</p>
+                    <p style="color: orangered; left: 40px;">build: <span style="color: violet;">.</span> <span style="color: black;"># This line tells our container
+                        and image from a Dockerfile in the specified location,</span></p>
+                    <p style="color: black; left: 40px; bottom: 10px;"># which is the current directory (once again represented by a period).</p>
+                    <p style="color: orangered; left: 40px;">container_name: <span style="color: violet;">flask_app</span> <span style="color: black;">#
+                        This line gives our container a name so that we can identify it easily</span></p>
+                    <p style="color: black; left: 40px; bottom: 10px;"># if we need to check it's logs or something.</p>
+                    <p style="color: orangered; left: 40px;">ports: <span style="color: black;"># It's time to define our ports, so make sure you tab in and
+                        add the following line.</span></p>
+                    <p style="color: yellow; left: 60px;">- <span style="color: white;">"5000:5000"</span> <span style="color: black;"># This line
+                        specifies port 5000 as both the host port (the one before the colon)</span></p>
+                    <p style="color: black; left: 60px; bottom: 10px;"># and the container port (the one after the colon) to serve the app on.</p>
+				    <p style="color: orangered; left: 40px;">environment: <span style="color: black;"># This will allow our image to connect to the SQL database.</span></p>
+					<p style="color: yellow; left: 60px;">- <span style="color: white;">SQLALCHEMY_DATABASE_URI=postgresql://user:pass@db:5432/db_name</span></p>
+					<p style="color: black; left: 60px;"># Make sure to replace user, pass, & db_name with the info we will provide in the postgres image.</p>
+					<p style="color: orangered; left: 40px;">depends_on: <span style="color: black;"># This prevents our site from running
+					    if the database isn't already up and running.</span></p>
+					<p style="color: yellow; left: 60px;">- <span style="color: white;">db</span></p>
+					<p style="color: black; left: black;"># Now we can set up our database using the official PostgreSQL docker image! Make sure it's all properly tabbed in.</p>
+					<p style="color: orangered; left: 20px;">db:</p>
+					<p style="color: orangered; left: 40px;">image: <span style="color: violet;">postgres:13</span> <span style="color: black;">#
+					    Version 13 of the official postgres image</span></p>
+					<p style="color: orangered; left: 40px;">container_name: <span style="color: violet;">postgres_db</span></p>
+					<p style="color: orangered; left: 40px;">environment: <span style="color: black;"># Here we can set up our username, password, & database name
+					    for our app image above.</span></p>
+					<p style="color: orangered; left: 60px;">POSTGRES_USER: <span style="color: violet;">user</span></p>
+					<p style="color: orangered; left: 60px;">POSTGRES_PASSWORD: <span style="color: violet;">pass</span></p>
+					<p style="color: orangered; left: 60px;">POSTGRES_DB: <span style="color: violet;">db_name</span></p>
+					<p style="color: orangered; left: 40px;">ports: </p>
+					<p style="color: yellow; left: 60px;">- <span style="color: white;">"5432:5432"</span></p>
+					<p style="color: orangered; left: 40px;">volumes: <span style="color: black;"># This will mount the database's data in a volume for easy access/portability</span></p>
+					<p style="color: yellow; left: 60px;">- <span style="color: white;">postgres_data:/var/lib/postgresql/data</span></p>
+					<p style="color: black;"># This next container is completely optional but it is nice as it adds a GUI for our database for easy management.</p>
+					<p style="color: orangered; left: 20px;">adminer:</p>
+					<p style="color: orangered; left: 40px;">image: <span style="color: violet;">adminer</span></p>
+					<p style="color: orangered; left: 40px;">ports: <span style="color: black;"># This is the localhost port where we will access our database's GUI</span></p>
+					<p style="color: yellow; left: 60px;">- <span style="color: white;">"8080:8080"</span></p>
+					<p style="color: black;"># This next part won't be a container but it will set up the volume that we specified in the postgres section</p>
+					<p style="color: orangered; left: 20px;">volumes:</p>
+					<p style="color: orangered; left: 40px;">postgres_data:</p>
 				</div>
+				<hr style="position: relative; top: 150px;">
+				<p style="position: relative; top: 150px;">The hard part is over :D !!.</p>
+				<p style="position: relative; top: 150px;">Now all we have to do is add some stuff to our <span style="color: #007BA7;">requirements.txt</span> file
+				    and our <span style="color: #007BA7;">app.py</span> file. Let's start with
+				    our app file. Follow along with the box please ^-^</p>
+				<div class="code-container" style="top: 150px;">
+                    <p>#!/usr/bin/env python3</p>
+                    <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask
+                        <span style="color: orangered;">import</span> Flask, render_template</p>
+                    <p style="color: black;"># The following two import statements will add Migrate for portability and Flask's version of SQALchemy</p>
+                    <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask_migrate
+                        <span style="color: orangered;">import</span> Migrate</p>
+                    <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask_sqlalchemy
+                        <span style="color: orangered;">import</span> SQLAlchemy</p>
+                    <p style="color: violet;">app <span style="color: white;">=</span>
+                        <span style="color: #007BA7;">Flask(__name__)</span></p>
+                    <p style="color: black;"># Add these two config statements above the secret key. These will connect our app to our database and disable debug notifications.</p>
+                    <p style="color: violet;">app<span style="color: white;">.config</span><span style="color: white;">[</span>
+                        'SQLALCHEMY_DATABASE_URI'<span style="color: white;">] = </span><span style="color: #007BA7;">"postgresql://user:pass@db:5432/db_name"</span></p>
+                    <p style="color: violet;">app<span style="color: white;">.config</span><span style="color: white;">[</span>
+                        'SQLALCHEMY_TRACK_MODIFICATIONS'<span style="color: white;">] = </span><span style="color: #007BA7;">False</span></p>
+                    <p style="color: violet;">app<span style="color: white;">.config</span><span style="color: white;">[</span>
+                        'SECRET_KEY'<span style="color: white;">] = </span><span style="color: #007BA7;">"bunnies r the bestest animalz ever !!11!!!!!!"</span></p>
+                    <p style="color: black;"># These two lines will set our database and migrate variables for use in the rest of the file.</p>
+                    <p style="color: violet;">app <span style="color: white;">=</span>
+                        <span style="color: #007BA7;">SQLAlchemy(app)</span></p>
+                    <p style="color: violet;">app <span style="color: white;">=</span>
+                        <span style="color: #007BA7;">Migrate(app, db)</span></p>
+                    <p style="color: violet;"><span style="color: orangered;">@</span>app
+                        <span style="color: white;">.route</span><span style="color: white;">(</span><span style="color: #007BA7;">'/'</span><span style="color: white;">)</span>
+                    <p style="color: white;"><span style="color: orangered;">def </span><span style="color: #007BA7;">index</span>():
+                    <p style="left: 20px; color: orangered;">return
+                        <span style="color: #007BA7;">render_template</span><span style="color: white;">(</span><span style="color: lime;">'index.html'</span><span style="color: white;">)</span></p>
+                    <p style="color: white;"><span style="color: orangered;">if </span><span style="color: #007BA7;">__name__</span>
+                        == <span style="color: #007BA7;">'__main__'</span>: <span style="color: black;"># Make sure to tab in the line below !!</span></p>
+                    <p style="color: orangered; left: 40px;">with <span style="color: violet;">app.</span><span style="color: #007BA7;">app_context()</span><span style="color: white;">:</span>
+                    <span style="color: black; font-size: 14px;"># Make sure to tab in the-- nvm, u should know how python's syntax works by now</span></p>
+                    <p style="color: orangered; left: 60px;"><span style="color: violet;">db.</span><span style="color: #007BA7;">create_all()</span>
+                        <span style="color: black;"># This will create the database within our site</span></p>
+                    <p style="left: 20px; color: violet;">app<span style="color: white;">.run(</span>host<span style="color: white;">=</span><span style="color: orangered;">"0.0.0.0"</span>,
+                        port<span style="color: white;">=</span><span style="color: orangered;">5000</span>)</p>
+				</div>
+				<hr style="position: relative; top: 200px;">
+				<p style="position: relative; top: 200px;">Finally, we just need to update our <span style="color: #007BA7;">requirements.txt</span>
+				    file with the two packages we imported. (I know it'll be super complicated but please follow along with the box ^-^)</p>
+				<div class="code-container" style="top: 200px;">
+				    <p>flask</p>
+					<p>flask_sqlalchemy</p>
+					<p>flask_migrate</p>
+				</div>
+				<hr style="position: relative; top: 250px;">
+				<p style="position: relative; top: 250px;">YAAAAAAAAAAAAAY!!!!!!!!!!!!!!!</p>
+				<p style="position: relative; top: 250px;">Now we have a functioning SQL database that we can use to store data in our backend which we can use later in
+				    various things in our website.</p>
+				<p style="position: relative; top: 300px;">Thank you for reading this far !</p>
+				<p style="position: relative; top: 350px; height: 300px;">In the next tutorial I'll walk us through how we can actually create tables in our database to
+				    store data and how we can use it in our html pages with the Jinja2 language, so stay tuned!</p>
 			</div>
 			<div class="leftsidebar">
 			</div>
