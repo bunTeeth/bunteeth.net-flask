@@ -103,9 +103,9 @@
                     <p style="color: violet;">app<span style="color: white;">.config</span><span style="color: white;">[</span>
                         'SECRET_KEY'<span style="color: white;">] = </span><span style="color: #007BA7;">"bunnies r the bestest animalz ever !!11!!!!!!"</span></p>
                     <p style="color: black;"># These two lines will set our database and migrate variables for use in the rest of the file.</p>
-                    <p style="color: violet;">app <span style="color: white;">=</span>
+                    <p style="color: violet;">db <span style="color: white;">=</span>
                         <span style="color: #007BA7;">SQLAlchemy(app)</span></p>
-                    <p style="color: violet;">app <span style="color: white;">=</span>
+                    <p style="color: violet;">migrate <span style="color: white;">=</span>
                         <span style="color: #007BA7;">Migrate(app, db)</span></p>
                     <p style="color: violet;"><span style="color: orangered;">@</span>app
                         <span style="color: white;">.route</span><span style="color: white;">(</span><span style="color: #007BA7;">'/'</span><span style="color: white;">)</span>

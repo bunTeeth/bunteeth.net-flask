@@ -39,8 +39,71 @@
 				    manage the contents of our database with python through our <span style="color: #007BA7;">app.py</span> file.</p>
 				<p style="position: relative; top: 100px;">WIP</p>
 				<div class="code-container" style="top: 100px;">
-				    <p># hi</p>
-					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test</p>
+				    <p>#!/usr/bin/env python3</p>
+                    <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask
+                        <span style="color: orangered;">import</span> Flask, render_template</p>
+                    <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask_migrate
+                        <span style="color: orangered;">import</span> Migrate</p>
+                    <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask_sqlalchemy
+                        <span style="color: orangered;">import</span> SQLAlchemy</p>
+                    <p style="color: violet;">app <span style="color: white;">=</span>
+                        <span style="color: #007BA7;">Flask(__name__)</span></p>
+                    <p style="color: violet;">app<span style="color: white;">.config</span><span style="color: white;">[</span>
+                        'SQLALCHEMY_DATABASE_URI'<span style="color: white;">] = </span><span style="color: #007BA7;">"postgresql://user:pass@db:5432/db_name"</span></p>
+                    <p style="color: violet;">app<span style="color: white;">.config</span><span style="color: white;">[</span>
+                        'SQLALCHEMY_TRACK_MODIFICATIONS'<span style="color: white;">] = </span><span style="color: #007BA7;">False</span></p>
+                    <p style="color: violet;">app<span style="color: white;">.config</span><span style="color: white;">[</span>
+                        'SECRET_KEY'<span style="color: white;">] = </span><span style="color: #007BA7;">"bunnies r the bestest animalz ever !!11!!!!!!"</span></p>
+                    <p style="color: violet;">db <span style="color: white;">=</span>
+                        <span style="color: #007BA7;">SQLAlchemy(app)</span></p>
+                    <p style="color: violet;">migrate <span style="color: white;">=</span>
+                        <span style="color: #007BA7;">Migrate(app, db)</span></p>
+                    <p style="color: black;"># This is where we'll define our database tables.</p>
+                    <p style="color: black;"># To create a table we have to make a class for it that takes in the SQLAlchemy model class. This class will represent our table
+                       and it's structure</p>
+                    <p style="color: orangered;">class
+                        <span style="color: #007BA7;">BlogPost</span><span style="color: white;">(</span><span style="color: violet;">db.Model</span><span style="color: white;">):</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__tablename__ <span style="color: white;">=</span> <span style="color: #007BA7;">'blog_posts'</span>
+                        <span style="color: black;"># This is only used in the database and we won't need it to interact with the table from within our app</span></p>
+                    <!--<p>&nbsp;</p>-->
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id <span style="color: white;">=</span>
+                        <span style="color: violet;">db.Column</span><span style="color: white;">(</span><span style="color: violet;">db.Integer</span><span style="color: white;">,</span>
+                        <span>primary_key</span><span style="color: white;">=</span><span style="color: #007BA7;">True</span><span style="color: white;">)</span>
+                        <span style="color: black;"># This will be how we identify data in our table and is necessary in each table we add.</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title <span style="color: white;">=</span>
+                        <span style="color: violet;">db.Column</span><span style="color: white;">(</span><span style="color: violet;">db.String</span><span style="color: white;">,</span>
+                        <span>unique</span><span style="color: white;">=</span><span style="color: #007BA7;">True</span><span style="color: white;">,</span>
+                        <span>nullable</span><span style="color: white;">=</span><span style="color: #007BA7;">False</span><span style="color: white;">)</span>
+                        <span style="color: black;"># This lets us give our posts a title that must be unique and can't be empty</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date_posted <span style="color: white;">=</span>
+                        <span style="color: violet;">db.Column</span><span style="color: white;">(</span><span style="color: violet;">db.DateTime</span><span style="color: white;">,</span>
+                        <span>default</span><span style="color: white;">=</span><span style="color: #007BA7;">datetime.now()</span><span style="color: white;">)</span>
+                        <span style="color: black;"># This sets the date of our post to the exact time we added it to the database in our local timezone</span></p>
+                    <p style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Now we need to create an init function for our class that sets lets it take in its' title and date</p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def
+                        <span style="color: #007BA7;">__init__</span><span style="color: white;">(</span><span style="color: violet;">self</span><span style="color: white;">,</span>
+                        <span style="color: violet;">title</span><span style="color: white;">,</span> <span style="color: violet;">date_posted</span><span style="color: white;">):</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: violet;">self</span><span style="color: white;">.</span>title
+                        <span style="color: white;">=</span> <span style="color: #007BA7;">title</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: violet;">self</span><span style="color: white;">.</span>date_posted
+                        <span style="color: white;">=</span> <span style="color: #007BA7;">date_posted</span></p>
+                    <p style="color: black;"># This function creates a string for each object, we won't use it but it's nice to have</p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def
+                        <span style="color: #007BA7;">__repr__</span><span style="color: white;">(</span><span style="color: violet;">self</span><span style="color: white;">):</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return
+                        <span style="color: white;">f</span><span style="color: #007BA7;">'Title:
+                            <span style="color: #1D96C2;">{self.title}</span> Date: <span style="color: #1D96C2;">{self.date_posted}</span>'</span></p>
+                    <p style="color: black;"># App Routes</p>
+                    <p style="color: violet;"><span style="color: orangered;">@</span>app
+                        <span style="color: white;">.route</span><span style="color: white;">(</span><span style="color: #007BA7;">'/'</span><span style="color: white;">)</span>
+                    <p style="color: white;"><span style="color: orangered;">def </span><span style="color: #007BA7;">index</span>():
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return
+                        <span style="color: #007BA7;">render_template</span><span style="color: white;">(</span><span style="color: lime;">'index.html'</span><span style="color: white;">)</span></p>
+                    <p style="color: white;"><span style="color: orangered;">if </span><span style="color: #007BA7;">__name__</span> == <span style="color: #007BA7;">'__main__'</span>:
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with <span style="color: violet;">app.</span><span style="color: #007BA7;">app_context()</span><span style="color: white;">:</span>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: violet;">db.</span><span style="color: #007BA7;">create_all()</span></p>
+                    <p style="color: violet;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;app<span style="color: white;">.run(</span>host<span style="color: white;">=</span><span style="color: orangered;">"0.0.0.0"</span>,
+                        port<span style="color: white;">=</span><span style="color: orangered;">5000</span>)</p>
 				</div>
 			</div>
 			<div class="leftsidebar">
