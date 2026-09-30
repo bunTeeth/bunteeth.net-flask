@@ -84,14 +84,14 @@
 					<span style="color: white;">.route</span><span style="color: white;">(</span><span style="color: #007BA7;">'/'</span><span style="color: white;">)</span>
 					<span style="color: black;"># This will be where we serve our index file</span>
 					<p style="color: white;"><span style="color: orangered;">def </span><span style="color: #007BA7;">index</span>():
-					<span style="color: black;"># make sure you tab in once for anything under this. Be consistent with your spaces too.</span>
-					<p style="left: 20px; color: orangered;">return
+					<span style="color: black;"># make sure anything under this is tabbed in. Be consistent with your spaces too.</span>
+					<p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return
 					<span style="color: #007BA7;">render_template</span><span style="color: white;">(</span><span style="color: lime;">'index.html'</span><span style="color: white;">)</span></p>
 					<p style="color: black;"># This if statement basically just lets us run our app only from this script & not as an import</p>
 					<p style="color: white;"><span style="color: orangered;">if </span><span style="color: #007BA7;">__name__</span>
 					== <span style="color: #007BA7;">'__main__'</span>:</p>
-					<p style="color: black;"># Make sure you tab in this line as well.</p>
-					<p style="left: 20px; color: violet;">app<span style="color: white;">.run(</span>host<span style="color: white;">=</span><span style="color: orangered;">"0.0.0.0"</span>,
+					<p style="color: black;"># Make sure this line is tabbed in as well.</p>
+					<p style="color: violet;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;app<span style="color: white;">.run(</span>host<span style="color: white;">=</span><span style="color: orangered;">"0.0.0.0"</span>,
 					port<span style="color: white;">=</span><span style="color: orangered;">5000</span>)<span style="color: black;"> # This lets the app run on our computer's
 					main network interface instead of just our loopback (localhost) interface. This is important if we plan on hosting our site.</span></p>
 				</div>
@@ -101,12 +101,12 @@
 				<p style="position: relative; top: 200px;">So let's fix that! Let's now open it in our text editor of choice and add the following code to it:</p>
 				<div class="code-container" style="top: 200px;">
 				    <p style="color: lime;"><span style="color: white;"><</span>html<span style="color: white;">></span></p>
-					<p style="left: 20px; color: lime;"><span style="color: white;"><</span>body<span style="color: white;">></span></p>
-					<p style="left: 40px; color: lime;"><span style="color: white;"><</span>main<span style="color: white;">></span></p>
-					<p style="left: 60px;color: lime;"><span style="color: white;"><</span>h1<span style="color: white;">>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>body<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>main<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>h1<span style="color: white;">>
 					Hewwo, World <</span><span style="color: lime;">/h1</span><span style=" color: white;">></span></p>
-					<p style="left: 40px; color: lime;"><span style="color: white;"><</span>/main<span style="color: white;">></span></p>
-					<p style="left: 20px; color: lime;"><span style="color: white;"><</span>/body<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>/main<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>/body<span style="color: white;">></span></p>
 					<p style="color: lime;"><span style="color: white;"><</span>/html<span style="color: white;">></span></p>
 				</div>
 				<hr style="position: relative; top: 250px;">

@@ -78,19 +78,19 @@
 				    <p style="color: black;"># This line lists our containers, we need it even though we just have one.</p>
 				    <p style="color: orangered;">services:</p>
 					<p style="color: black;"># Tab in and write the line below. This line will define our container.</p>
-					<p style="color: orangered; left: 20px;">web:</p>
-					<p style="color: black; left: 40px;"># Tab in again and write each of the following lines:</p>
+					<p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;web:</p>
+					<p style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Write the follwing lines & make sure they're tabbed in:</p>
 					<p style="color: orangered; left: 40px;">build: <span style="color: violet;">.</span> <span style="color: black;"># This line tells our container
 					and image from a Dockerfile in the specified location,</span></p>
-					<p style="color: black; left: 40px; bottom: 10px;"># which is the current directory (once again represented by a period).</p>
-					<p style="color: orangered; left: 40px;">container_name: <span style="color: violet;">flask_app</span> <span style="color: black;">#
-					This line gives our container a name so that we can identify it easily</span></p>
-					<p style="color: black; left: 40px; bottom: 10px;"># if we need to check it's logs or something.</p>
-					<p style="color: orangered; left: 40px;">ports: <span style="color: black;"># It's time to define our ports, so make sure you tab in and
+					<p style="color: black; bottom: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# which is the current directory (once again represented by a period).</p>
+					<p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;container_name: <span style="color: violet;">flask_app</span> <span style="color: black;">#
+					This line gives our container a name so that we can identify it</span></p>
+					<p style="color: black;bottom: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# if we need to check it's logs or something.</p>
+					<p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ports: <span style="color: black;"># It's time to define our ports, so make sure you tab in and
 					add the following line.</span></p>
-					<p style="color: yellow; left: 60px;">- <span style="color: white;">"5000:5000"</span> <span style="color: black;"># This line
+					<p style="color: yellow;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span style="color: white;">"5000:5000"</span> <span style="color: black;"># This line
 					specifies port 5000 as both the host port (the one before the colon)</span></p>
-					<p style="color: black; left: 60px; bottom: 10px;"># and the container port (the one after the colon) to serve the app on.</p>
+					<p style="color: black; bottom: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# and the container port (the one after the colon) to serve the app on.</p>
 				</div>
 				<hr style="position: relative; top: 200px;">
 				<p style="position: relative; top: 200px;">Supa fwickin' awesum sauce !! These two files let us build and run our app in an isolated environment via

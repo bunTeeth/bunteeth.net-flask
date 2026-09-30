@@ -29,7 +29,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_pass}@db:54
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = f'{key}'
 
-
 # Database instance
 db = SQLAlchemy(app)
 migrate = Migrate(app, db) # I dont think this is necessary the way things r set up rn, but who knows
