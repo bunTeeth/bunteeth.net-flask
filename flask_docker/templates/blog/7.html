@@ -88,11 +88,12 @@
                     <p>#!/usr/bin/env python3</p>
                     <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask
                         <span style="color: orangered;">import</span> Flask, render_template</p>
-                    <p style="color: black;"># The following two import statements will add Migrate for portability and Flask's version of SQALchemy</p>
+                    <p style="color: black;"># The following three import statements will add Migrate for portability and Flask's version of SQALchemy as well as its connector</p>
                     <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask_migrate
                         <span style="color: orangered;">import</span> Migrate</p>
                     <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask_sqlalchemy
                         <span style="color: orangered;">import</span> SQLAlchemy</p>
+                    <p style="color: #007BA7;"><span style="color: orangered;">import</span> pyscopg2</p>
                     <p style="color: violet;">app <span style="color: white;">=</span>
                         <span style="color: #007BA7;">Flask(__name__)</span></p>
                     <p style="color: black;"># Add these two config statements above the secret key. These will connect our app to our database and disable debug notifications.</p>
@@ -107,8 +108,7 @@
                         <span style="color: #007BA7;">SQLAlchemy(app)</span></p>
                     <p style="color: violet;">migrate <span style="color: white;">=</span>
                         <span style="color: #007BA7;">Migrate(app, db)</span></p>
-                    <p style="color: violet;"><span style="color: orangered;">@</span>app
-                        <span style="color: white;">.route</span><span style="color: white;">(</span><span style="color: #007BA7;">'/'</span><span style="color: white;">)</span>
+                    <p style="color: violet;"><span style="color: orangered;">@</span>app<span style="color: white;">.route</span><span style="color: white;">(</span><span style="color: #007BA7;">'/'</span><span style="color: white;">)</span>
                     <p style="color: white;"><span style="color: orangered;">def </span><span style="color: #007BA7;">index</span>():
                     <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return
                         <span style="color: #007BA7;">render_template</span><span style="color: white;">(</span><span style="color: lime;">'index.html'</span><span style="color: white;">)</span></p>
@@ -128,6 +128,8 @@
 				    <p>flask</p>
 					<p>flask_sqlalchemy</p>
 					<p>flask_migrate</p>
+					<p>psycopg</p>
+					<p>psycopg2-binary</p>
 				</div>
 				<hr style="position: relative; top: 250px;">
 				<p style="position: relative; top: 250px;">YAAAAAAAAAAAAAY!!!!!!!!!!!!!!!</p>

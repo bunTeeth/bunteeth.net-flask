@@ -167,7 +167,7 @@ def add_post():
 		p = BlogPost(title=title, date_posted=date_posted)
 		db.session.add(p)
 		db.session.commit()
-		return redirect('/')
+		return redirect(f'/blog/{p.id}')
 	else:
 		return redirect('/')
 

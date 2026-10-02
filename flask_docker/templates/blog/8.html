@@ -33,19 +33,79 @@
 				<h3>Part 4: Creating & Querying Database Tables</h3>
 				<hr>
 				<p>Hiii! Welcome to part 4 of my tutorial series on building a website with Flask. In this article I'll go over creating SQL tables
-				    with SQLAlchemy and how we can query them as well as how we can display them in our HTML with the templating language, Jinja2.</p>
+				    with SQLAlchemy and how we can query them.</p>
 				<p style="position: relative; top: 50px;">If you've followed along with the last three parts you should now have a working flask website that runs
 				    inside a Docker container alongside a PostgreSQL database that we have linked to our site via SQLAlchemy. With SQLAlchemy, we can easily
 				    manage the contents of our database with python through our <span style="color: #007BA7;">app.py</span> file.</p>
-				<p style="position: relative; top: 100px;">WIP</p>
+				<p style="position: relative; top: 100px;">The first thing we're going to do is create a simple HTML file that serves a page with a blog post form.
+				    This form will send an HTTP POST request to the <span style="color: #007BA7;">/create-blog-post</span> route in our app to add the title of our post.
+				    We don't need to specify a date as it will default to the current time, although if you want to go back afterwords and add that function, you can!
+				    Anyways, let's get started with the form, which you can add to the <span style="color: #007BA7;">index.html</span> file we made earlier, or make a new file
+								(make sure it's in the templates folder as well, though).</p>
 				<div class="code-container" style="top: 100px;">
+				    <p style="color: lime;"><span style="color: white;"><</span>html<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>body<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>main<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>h1<span style="color: white;">>
+					    Add a Blog Post: <</span><span style="color: lime;">/h1</span><span style=" color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>form
+					<span style="color: #007BA7;">action</span><span style="color: white;">=</span><span style="color: violet;">"/create-blog-post"</span>
+					<span style="color: #007BA7;">method</span><span style="color: white;">=</span><span style="color: violet;">"POST"</span><span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>label<span style="color: white;">></span>
+					    <span style="color: white;">Title: <</span>/label<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>input
+					    <span style="color: #007BA7;">type</span><span style="color: white;">=</span><span style="color: violet;">"text"</span>
+					    <span style="color: #007BA7;">name</span><span style="color: white;">=</span><span style="color: violet;">"title"</span>
+					    <span style="color: #007BA7;">placeholder</span><span style="color: white;">=</span><span style="color: violet;">"give ur post a title!"</span><span style="color: white;">></span></p>
+					<p  style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>button
+					    <span style="color: #007BA7;">type</span><span style="color: white;">=</span><span style="color: violet;">"submit"</span><span style="color: white;">>Add!</span>
+					    <span style="color: white;"><</span>/button<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>/form<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>/main<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>/body<span style="color: white;">></span></p>
+					<p style="color: lime;"><span style="color: white;"><</span>/html<span style="color: white;">></span></p>
+				</div>
+				<hr style="position: relative; top: 150px;">
+				<p style="position: relative; top: 150px;">Now that we have our form that adds a blog post, we need a blog post that we can actually add. So
+				    let's create that real quick, our file can simply be named <span style="color: #007BA7;">1.html</span> as
+								we can simply display the page via it's database id, that way we can change the
+								title in the future if we want.
+								The contents of the file can be super simple, it can even be the same as the code above, but for this example I'll just write a simple
+								paragraph.</p>
+				<div class="code-container" style="top: 150px;">
+                    <p style="color: lime;"><span style="color: white;"><</span>html<span style="color: white;">></span></p>
+                    <p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>body<span style="color: white;">></span></p>
+                    <p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>main<span style="color: white;">></span></p>
+                    <p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>p<span style="color: white;">>
+                        Bunnies are the greatest creatures to ever roam the earth. Their ethereal beauty and grace
+                        has captivated those who are pure of heart for generations and struck fear into the hearts
+                        of those who are evil. I love bunnies. This is no secret. However,
+                       if you were to purify your heart, mind, and soul, you would welcome bunnies as the saviors
+                      of the human race. Amen. <</span><span style="color: lime;">/p</span><span style=" color: white;">></span></p>
+                    <p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>/main<span style="color: white;">></span></p>
+                    <p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>/body<span style="color: white;">></span></p>
+                    <p style="color: lime;"><span style="color: white;"><</span>/html<span style="color: white;">></span></p>
+				</div>
+				<hr style="position: relative; top: 200px;">
+				<p style="position: relative; top: 200px;">Awesome! Now comes the long part. We need to create the database table for blog posts, then create the
+				    <span style="color: #007BA7;">/create-blog-post</span> route that we mentioned in the blog post form. This will involve writing a python class that
+				    creates the table and defines its parts, then we have to add the route functionality to add the post to the table and redirect us to the post.
+				    We also need to create a route that can display our blog posts depending on one of the post's database columns, which will be title for this example.
+				    With that being said, let's get to work on updating our <span style="color: #007BA7;">app.py</span> file. Please follow along with the box
+								and add any new lines.</p>
+				<div class="code-container" style="top: 200px;">
 				    <p>#!/usr/bin/env python3</p>
                     <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask
-                        <span style="color: orangered;">import</span> Flask, render_template</p>
+                        <span style="color: orangered;">import</span> Flask, render_template, redirect, request <span style="color: black;"># We need to add redirect to send the user to
+                            different routes & request to handle the info we send in via our HTML form</span></p>
                     <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask_migrate
                         <span style="color: orangered;">import</span> Migrate</p>
                     <p style="color: #007BA7;"><span style="color: orangered;">from</span> flask_sqlalchemy
                         <span style="color: orangered;">import</span> SQLAlchemy</p>
+                    <p style="color: #007BA7;"><span style="color: orangered;">import</span> psycopg</p>
+                    <p style="color: black;"># We need to import datetime so that we can timestamp our blog posts</p>
+                    <p style="color: #007BA7;"><span style="color: orangered;">from</span> datetime
+                        <span style="color: orangered;">import</span> datetime</p>
                     <p style="color: violet;">app <span style="color: white;">=</span>
                         <span style="color: #007BA7;">Flask(__name__)</span></p>
                     <p style="color: violet;">app<span style="color: white;">.config</span><span style="color: white;">[</span>
@@ -94,17 +154,68 @@
                         <span style="color: white;">f</span><span style="color: #007BA7;">'Title:
                             <span style="color: #1D96C2;">{self.title}</span> Date: <span style="color: #1D96C2;">{self.date_posted}</span>'</span></p>
                     <p style="color: black;"># App Routes</p>
-                    <p style="color: violet;"><span style="color: orangered;">@</span>app
-                        <span style="color: white;">.route</span><span style="color: white;">(</span><span style="color: #007BA7;">'/'</span><span style="color: white;">)</span>
+                    <p style="color: violet;"><span style="color: orangered;">@</span>app<span style="color: white;">.route</span><span style="color: white;">(</span><span style="color: #007BA7;">'/'</span><span style="color: white;">)</span>
                     <p style="color: white;"><span style="color: orangered;">def </span><span style="color: #007BA7;">index</span>():
                     <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return
                         <span style="color: #007BA7;">render_template</span><span style="color: white;">(</span><span style="color: lime;">'index.html'</span><span style="color: white;">)</span></p>
+                    <p style="color: violet;"><span style="color: orangered;">@</span>app<span style="color: white;">.route</span><span style="color: white;">(</span><span style="color: #007BA7;">'/blog/&lt;int:id&gt;'</span><span style="color: white;">)</span>
+                        <span style="color: black;"># This route displays the requested blog post filtered by it's id</span></p>
+                    <p style="color: orangered;">def
+                            <span style="color: #007BA7;">get_post</span><span style="color: white;">(</span><span style="color: violet;">id</span><span style="color: white;">):</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;post
+                        <span style="color: white;">=</span>
+                        <span style="color: violet;">db.</span>session.<span style="color: violet;">get</span><span style="color: white;">(</span><span style="color: violet;">BlogPost, id</span><span style="color: white;">)</span>
+                        <span style="color: black;"># These two lines will grab the post and serve it</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return
+                            <span style="color: #007BA7;">render_template</span><span style="color: white;">(f</span><span style="color: lime;">'{post.id}.html'</span><span style="color: white;">)</span></p>
+                    <p style="color: violet;"><span style="color: orangered;">@</span>app<span style="color: white;">.route</span><span style="color: white;">(</span><span style="color: #007BA7;">'/create-blog-post'</span><span style="color: white;">,</span>
+                        methods<span style="color: white;">=[</span><span style="color: #007BA7;">'POST'</span><span style="color: white;">])</span> <span style="color: black;"># This creates the route and lets it
+                            take in a POST request, which is what we specified our form to send</span></p>
+                    <p style="color: white;"><span style="color: orangered;">def </span><span style="color: #007BA7;">add_post</span>():</p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title <span style="color: white;">=</span>
+                        <span style="color: violet;">request.form.get</span><span style="color: white;">(</span><span style="color: #007BA7;">"title"</span><span style="color: white;">)</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date_posted <span style="color: white;">=</span>
+                        <span style="color: violet;">datetime</span><span style="color: white;">.</span><span style="color: #007BA7;">now</span><span style="color: white;">()</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if <span style="color: #007BA7;">title</span> <span style="color: white;">!=</span>
+                        <span style="color: violet;">""</span><span style="color: white;">:</span> <span style="color: black;">#
+                            This if statement will make sure that it only redirects us to the post if we successfully added it.</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;post <span style="color: white;">=</span>
+                        <span style="color: #007BA7;"">BlogPost</span><span style="color: white;">(</span>title<span style="color: white;">=</span><span style="color: violet;">title</span><span style="color: white;">,
+                        </span>date_posted<span style="color: white;">=</span><span style="color: violet;">date_posted</span><span style="color: white;">)</span></p>
+                    <p style="color: violet;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;db<span style="color: white;">.</span><span style="color: #007BA7;">session</span><span style="color: white;">.</span>add<span style="color: white;">(</span>post<span style="color: white;">)</span></p>
+                    <p style="color: violet;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;db<span style="color: white;">.</span><span style="color: #007BA7;">session</span><span style="color: white;">.</span>commit<span style="color: white;">()</span></p>
+                    <p></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return
+                        <span style="color: #007BA7;">redirect</span><span style="color: white;">(f</span><span style="color: lime;">'/blog/{post.id}'</span><span style="color: white;">)</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<span style="color: white;">:</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return
+                        <span style="color: #007BA7;">redirect</span><span style="color: white;">(</span><span style="color: lime;">'/'</span><span style="color: white;">)</span></p>
                     <p style="color: white;"><span style="color: orangered;">if </span><span style="color: #007BA7;">__name__</span> == <span style="color: #007BA7;">'__main__'</span>:
-                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with <span style="color: violet;">app.</span><span style="color: #007BA7;">app_context()</span><span style="color: white;">:</span>
-                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: violet;">db.</span><span style="color: #007BA7;">create_all()</span></p>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with <span style="color: violet;">app.</span><span style="color: #007BA7;">app_context()</span><span style="color: white;">:</span>
+                    <p style="color: orangered;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: violet;">db.</span><span style="color: #007BA7;">create_all()</span></p>
                     <p style="color: violet;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;app<span style="color: white;">.run(</span>host<span style="color: white;">=</span><span style="color: orangered;">"0.0.0.0"</span>,
                         port<span style="color: white;">=</span><span style="color: orangered;">5000</span>)</p>
 				</div>
+				<hr style="position: relative; top: 250px;">
+				<p style="position: relative; top: 250px;">Phew, that now that that's over, all we have left to do is update our
+				    <span style="color: #007BA7;">requirements.txt</span> file to include datetime, then we're done with this section!</p>
+				<div class="code-container" style="top: 250px;">
+				    <p>flask</p>
+					<p>flask_sqlalchemy</p>
+					<p>flask_migrate</p>
+					<p>psycopg</p>
+	                <p>psycopg2-binary</p>
+				    <p>datetime</p>
+				</div>
+				<hr style="position: relative; top: 300px;">
+				<p style="position: relative; top: 300px;">We're finally done! Now we can test out our app by running
+				    <span style="color: #007BA7;">sudo docker compose up --build</span> from inside our main folder and then once it finishes
+								building the conatiners we can navigate to
+				    <span style="color: #007BA7;">http://localhost:5000</span>, type something into our form, hit the submit button,
+								and see if it does in fact show us our blog post.</p>
+				<p style="position: relative; top: 350px;">I was planning on going over including python variables in our HTML via Jinja2, but this article turned out
+				    to be super exhausting to write so I'll cover it in the next one, so be on the lookout for that.</p>
+				<p style="position: relative; top: 400px; height: 300px;">Thank you for reading !!!</p>
 			</div>
 			<div class="leftsidebar">
 			</div>
