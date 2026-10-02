@@ -8,6 +8,8 @@ from flask import Flask, redirect, render_template, request, send_from_directory
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
+import psycopg
+
 # App !
 app = Flask(__name__)
 

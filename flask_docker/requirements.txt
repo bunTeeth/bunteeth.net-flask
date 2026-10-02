@@ -2,5 +2,6 @@ flask
 flask_sqlalchemy
 flask_migrate
 datetime
+psycopg
 psycopg2-binary
 pathlib
