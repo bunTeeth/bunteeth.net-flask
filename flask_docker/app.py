@@ -40,7 +40,9 @@ playlist = {
 	1: ("LosT.mp3", "LosT - Bring Me The Horizon"),
 	2: ("No Love In LA.mp3", "No Love In LA - Palaye Royale"),
 	3: ("Detroit.mp3", "Detroit - Badflower"),
-	4: ("Modern Life Is Lonely.mp3", "Modern Life Is Lonely - Holding Absence")
+	4: ("Modern Life Is Lonely.mp3", "Modern Life Is Lonely - Holding Absence"),
+	5: ("Evolution.mp3", "Evolution - Nothing But Thieves"),
+	6: ("Order & Entropy.mp3", "Order & Entropy - 156/Silence")
 }
 
 # Global variables

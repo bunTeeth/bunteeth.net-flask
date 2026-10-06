@@ -32,8 +32,12 @@ const playlist = new Map();
 	playlist.set(2, "No Love In LA - Palaye Royale");
 	playlist.set(3, "Detroit - Badflower");
 	playlist.set(4, "Modern Life Is Lonely - Holding Absence");
+	playlist.set(5, "Evolution - Nothing But Thieves");
+	playlist.set(6, "Order & Entropy - 156/Silence");
+
 //////////SET DEFAULT SONG////////////
 let current_song = playlist.get(1);
+
 // CHECK 4 MOBILE DEVICE & DISPLAY WARNING
 window.onload = whenWindowLoads();
 function mobileCheck() {
@@ -210,7 +214,7 @@ function pauseAudio() {
 
 function nextAudio() {
 	song_counter += 1;
-	if (song_counter > 4) {
+	if (song_counter > 6) {
 		song_counter = 1;
 	}
 	let audio_id = document.getElementById(current_song);
@@ -224,7 +228,7 @@ function nextAudio() {
 function prevAudio() {
 	song_counter -= 1;
 	if (song_counter < 1) {
-		song_counter = 4;
+		song_counter = 6;
 	}
 	let audio_id = document.getElementById(current_song);
 	stopAudio(audio_id)

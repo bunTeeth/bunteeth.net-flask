@@ -149,6 +149,7 @@ footer img {
 
 .music-player-tracks {
   position: absolute;
+  box-sizing: border-box;
   top: 600px;
   width: 96%;
   height: 200px;
@@ -159,6 +160,7 @@ footer img {
   border-bottom: transparent;
   overflow-x: hidden;
   overflow-y: scroll;
+  padding: 10px;
 }
 
 .music-controls {
@@ -205,7 +207,9 @@ footer img {
 /*  background: #84172C;
   background: linear-gradient(180deg, rgba(132, 23, 44, 1) 0%, rgba(107, 21, 40, 1) 25%, rgba(74, 14, 27, 1) 75%); */
   border: 5px solid #4a4318;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-right: 10px;
  /* background: black;
   border-right-color: black;
   border-top-color: black;
