@@ -167,18 +167,18 @@
 					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>/form<span style="color: white;">></span></p>
 					<p style="color: black;">&lt;!-- This is where we will put our Jinja2 for loop. In the loop we will use our posts
 					    variable from our flask code and add a &ltp&gt; element for each of our blog posts. --&gt;</p>
-					<p style="color: violet;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{%</span>
-					    for <span style="color: lime;">post</span> in <span style="color: lime;">posts</span><span style="color: white;"> %}</span></p>
+					<p style="color: violet;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lbrace;&percnt;</span>
+					    for <span style="color: lime;">post</span> in <span style="color: lime;">posts</span><span style="color: white;"> &percnt;&rbrace;</span></p>
 					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>p<span style="color: white;">>
-					    Post #<span style="color: #007BA7;">{{post.id}}</span> | <span style="color: #007BA7;">{{post.title}}</span> | Posted on:
-					    <span><span style="color: #007BA7;">{{post.date_posted.day}}</span> /<span style="color: #007BA7;">{{post.date_posted.month}}</span>
-									/<span style="color: #007BA7;">{{post.date_posted.year}}</span></span></span></p>
+					    Post #<span style="color: #007BA7;">&lbrace;&lbrace;post.id&rbrace;&rbrace;</span> | <span style="color: #007BA7;">&lbrace;&lbrace;post.title&rbrace;&rbrace;</span> | Posted on:
+					    <span><span style="color: #007BA7;">&lbrace;&lbrace;post.date_posted.day&rbrace;&rbrace;</span> /<span style="color: #007BA7;">&lbrace;&lbrace;post.date_posted.month&rbrace;&rbrace;</span>
+									/<span style="color: #007BA7;">&lbrace;&lbrace;post.date_posted.year&rbrace;&rbrace;</span></span></span></p>
 					<p style="color: black;">&lt;!-- A simple button that will call the delete route we made above with the post's id --&gt;</p>
 					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>a
-					    <span style="color: #007BA7;">href</span><span style="color: white;">=</span><span style="color: violet;">"/delete-blog-post/{post.id}"</span><span style="color: white;"><</span>button<span></span><span style="color: white;">></span>
+					    <span style="color: #007BA7;">href</span><span style="color: white;">=</span><span style="color: violet;">"/delete-blog-post/&lbrace;post.id&rbrace;"</span><span style="color: white;"><</span>button<span></span><span style="color: white;">></span>
 					    <span style="color: white;">Delete <</span>/button<span style="color: white;">><</span>/a<span style="color: white;">></span></p>
-					<p style="color: violet;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{%</span>
-					    endfor <span style="color: white;">%}</span></p>
+					<p style="color: violet;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lbrace;&percnt;</span>
+					    endfor <span style="color: white;">&percnt;&rbrace;</span></p>
 					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>/main<span style="color: white;">></span></p>
 					<p style="color: lime;"><span style="color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<</span>/body<span style="color: white;">></span></p>
 					<p style="color: lime;"><span style="color: white;"><</span>/html<span style="color: white;">></span></p>
