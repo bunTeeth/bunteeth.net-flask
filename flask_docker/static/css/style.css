@@ -247,6 +247,7 @@ footer img {
 
 .blog-current {
   position: relative;
+  padding: 10px;
   height: 50px;
 }
 
@@ -315,7 +316,7 @@ footer img {
 .about-list-left ul {
   position: absolute;
   text-align: left;
-  list-style-image: url('https://pixelsafari.neocities.org/favicon/nature/plant/flower/blue9.gif');
+  list-style-image: url('../images/blue9.gif');
 }
 
 .about-list-left li {
@@ -333,7 +334,7 @@ footer img {
 .about-list-right ul {
   position: absolute;
   text-align: left;
-  list-style-image: url('https://pixelsafari.neocities.org/favicon/nature/plant/flower/blue9.gif');
+  list-style-image: url('../images/blue9.gif');
 }
 
 .about-list-right li {
